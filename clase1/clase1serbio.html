@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srpski jezik — Índice de Lecciones</title>
+    <!-- Ruta relativa con parámetro de caché ?v=1.0 según Guía de Estilo -->
+    <!-- <link rel="stylesheet" href="assets/styles.css?v=1.0"> -->
+    <style>
+        /*
+         * IDENTIDAD CROMÁTICA EXCLUSIVA
+         * Color Primario (Títulos y Acentos): #FF79AC (Flamingo Pink)
+         * Color Secundario (Fondo de Botones/Resaltado): #FFB3D1 (Rosa Claro)
+         * Color de Texto Principal: #121118 (Eerie Black)
+         * Fondo de Página: #FFFFFF (Blanco puro)
+         * Líneas Divisoras: #E0E0E0 (Gris claro)
+         */
+        :root {
+            --color-primary: #FF79AC;
+            --color-secondary: #FFB3D1;
+            --color-text: #121118;
+            --color-bg: #FFFFFF;
+            --color-border: #E0E0E0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, sans-serif;
+            font-weight: 500;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            padding: 2rem 1.25rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Títulos (H1) */
+        h1 {
+            font-size: 2.35rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+            text-align: center;
+        }
+
+        /* Subtítulos (H2) */
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--color-text);
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* Cuerpo de Texto Justificado */
+        p {
+            font-size: 1.05rem;
+            text-align: justify;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--color-border);
+            text-align: center;
+        }
+
+        /* Cuadrícula de Botones de Navegación */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .module-card {
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.75rem;
+            background-color: var(--color-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.25rem;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .module-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-3px);
+        }
+
+        .module-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .module-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .module-desc {
+            font-size: 1rem;
+            text-align: justify;
+            color: var(--color-text);
+        }
+
+        .btn-module {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background-color: var(--color-secondary);
+            color: var(--color-text);
+            border: 1px solid var(--color-primary);
+            padding: 0.8rem 1.5rem;
+            font-family: inherit;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            text-align: center;
+        }
+
+        .btn-module:hover {
+            background-color: var(--color-primary);
+            color: var(--color-bg);
+        }
+
+        footer {
+            border-top: 1px solid var(--color-border);
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        /* Adaptabilidad Móvil */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.1rem;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Srpski Jezik &mdash; Meni</h1>
+        <h2>Portal de Aprendizaje de Serbio</h2>
+        <p style="text-align: center;">
+            Bienvenido a tu plataforma interactiva para el estudio de la lengua serbia. Selecciona cualquiera de los módulos de aprendizaje a continuación para acceder a las lecciones de abecedario, vocabulario, lecturas y gramática.
+        </p>
+    </header>
+
+    <main>
+        <section aria-label="Módulos de estudio">
+            <div class="modules-grid">
+                <!-- Módulo 1: Abecedario -->
+                <article class="module-card">
+                    <div class="module-info">
+                        <div class="module-title">Abecedario Serbio</div>
+                        <p class="module-desc">
+                            Estudio completo del alfabeto serbio en su digrafía dual (alfabeto latino y cirílico) con ejemplos de palabras y traducciones al inglés para cada una de las 30 letras.
+                        </p>
+                    </div>
+                    <a href="abecedario.html" class="btn-module">Ir a Abecedario &rarr;</a>
+                </article>
+
+                <!-- Módulo 2: Lectura, escritura y pronunciación -->
+                <article class="module-card">
+                    <div class="module-info">
+                        <div class="module-title">Lectura, Escritura y Pronunciación</div>
+                        <p class="module-desc">
+                            Vocabulario esencial y diario organizado en dos columnas por línea con escritura bilingüe y actividades interactivas de práctica mediante la tecla Enter.
+                        </p>
+                    </div>
+                    <a href="lectura,escrituraypronunciacion.html" class="btn-module">Ir a Vocabulario &rarr;</a>
+                </article>
+
+                <!-- Módulo 3: Verano en Montenegro -->
+                <article class="module-card">
+                    <div class="module-info">
+                        <div class="module-title">Verano en Montenegro</div>
+                        <p class="module-desc">
+                            Lectura narrativa paralela en cuatro idiomas (Español, Inglés, Serbio Latín y Serbio Cirílico) acompañada de tres ejercicios prácticos de comprensión.
+                        </p>
+                    </div>
+                    <a href="veranoenmontenegro.html" class="btn-module">Ir a Historia &rarr;</a>
+                </article>
+
+                <!-- Módulo 4: Colores y gramática -->
+                <article class="module-card">
+                    <div class="module-info">
+                        <div class="module-title">Colores (Boje)</div>
+                        <p class="module-desc">
+                            Aprendizaje de los colores y su concordancia según el género gramatical (masculino, femenino y neutro) con ejemplos ilustrados y ejercicios interactivos.
+                        </p>
+                    </div>
+                    <a href="colores.html" class="btn-module">Ir a Colores &rarr;</a>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p style="text-align: center;">
+            <strong>Srpski Jezik Learning Portal</strong> &mdash; Guía de Estilo Visual Aplicada
+        </p>
+    </footer>
+
+</body>
+</html>

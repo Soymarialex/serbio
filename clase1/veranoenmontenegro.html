@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leto u Crnoj Gori | Summer in Montenegro</title>
+    <!-- Ruta relativa con parámetro de caché ?v=1.0 según Guía de Estilo -->
+    <!-- <link rel="stylesheet" href="assets/styles.css?v=1.0"> -->
+    <style>
+        /*
+         * IDENTIDAD CROMÁTICA EXCLUSIVA
+         * Color Primario (Títulos y Acentos): #FF79AC (Flamingo Pink)
+         * Color Secundario (Fondo de Botones/Resaltado): #FFB3D1 (Rosa Claro)
+         * Color de Texto Principal: #121118 (Eerie Black)
+         * Fondo de Página: #FFFFFF (Blanco puro)
+         * Líneas Divisoras: #E0E0E0 (Gris claro)
+         */
+        :root {
+            --color-primary: #FF79AC;
+            --color-secondary: #FFB3D1;
+            --color-text: #121118;
+            --color-bg: #FFFFFF;
+            --color-border: #E0E0E0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, sans-serif;
+            font-weight: 500;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            padding: 1.75rem 1.25rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Títulos (H1) */
+        h1 {
+            font-size: 2.35rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.45rem;
+            letter-spacing: -0.01em;
+        }
+
+        /* Subtítulos (H2) */
+        h2 {
+            font-size: 1.55rem;
+            font-weight: 600;
+            color: var(--color-text);
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Cuerpo de Texto Justificado */
+        p {
+            font-size: 1.05rem;
+            text-align: justify;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        header {
+            margin-bottom: 2.25rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        /* Tarjetas de lectura paralela en 4 idiomas (Español, Inglés, Serbio Latín, Serbio Cirílico) */
+        .story-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .paragraph-card {
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.35rem;
+            background-color: var(--color-bg);
+            transition: border-color 0.2s ease;
+        }
+
+        .paragraph-card:hover {
+            border-color: var(--color-primary);
+        }
+
+        .paragraph-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .paragraph-badge {
+            background-color: var(--color-secondary);
+            color: var(--color-text);
+            border: 1px solid var(--color-primary);
+            padding: 0.2rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .lang-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.15rem;
+        }
+
+        .lang-block {
+            padding: 0.9rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            background-color: var(--color-bg);
+        }
+
+        .lang-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--color-primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .lang-block p {
+            margin-bottom: 0;
+            font-size: 1rem;
+            text-align: justify;
+            line-height: 1.6;
+        }
+
+        /* Caja de palabras para VEŽBA 1 */
+        .word-bank {
+            padding: 1rem 1.25rem;
+            border: 1px solid var(--color-primary);
+            background-color: var(--color-secondary);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        /* Contenedor de ejercicios */
+        .exercise-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .exercise-row {
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.1rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            background-color: var(--color-bg);
+        }
+
+        .exercise-top {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+        }
+
+        .exercise-prompt {
+            font-size: 1.05rem;
+            font-weight: 600;
+            flex: 1 1 320px;
+        }
+
+        .exercise-actions-right {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .exercise-input-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        input[type="text"] {
+            flex: 1 1 260px;
+            padding: 0.65rem 0.95rem;
+            font-family: inherit;
+            font-size: 1rem;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--color-primary);
+        }
+
+        input[type="text"].tf-input {
+            flex: 0 0 90px;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .btn {
+            background-color: var(--color-secondary);
+            color: var(--color-text);
+            border: 1px solid var(--color-primary);
+            padding: 0.55rem 1rem;
+            font-family: inherit;
+            font-size: 0.92rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--color-primary);
+            color: var(--color-bg);
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.86rem;
+        }
+
+        .en-translation-box {
+            display: none;
+            padding: 0.65rem 0.95rem;
+            border-left: 3px solid var(--color-primary);
+            background-color: var(--color-secondary);
+            border-radius: 6px;
+            font-size: 0.96rem;
+        }
+
+        .en-translation-box.visible {
+            display: block;
+        }
+
+        .feedback-text {
+            font-size: 0.92rem;
+            font-weight: 600;
+            min-height: 1.35rem;
+        }
+
+        .feedback-text.ok {
+            color: var(--color-primary);
+        }
+
+        .example-box {
+            padding: 0.95rem 1.15rem;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            margin-bottom: 1.25rem;
+            background-color: var(--color-bg);
+        }
+
+        .section-footer-bar {
+            margin-top: 1.25rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .score-badge {
+            padding: 0.55rem 1.1rem;
+            border-radius: 8px;
+            border: 1px solid var(--color-primary);
+            background-color: var(--color-secondary);
+            font-weight: 700;
+        }
+
+        footer {
+            border-top: 1px solid var(--color-border);
+            padding-top: 1.25rem;
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        /* Adaptabilidad Móvil */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .lang-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Leto u Crnoj Gori</h1>
+        <h2>Summer in Montenegro</h2>
+        <p>
+            Lee y compara esta historia de verano en Montenegro presentada párrafo por párrafo en cuatro idiomas siguiendo el orden establecido: <strong>1. Español</strong>, <strong>2. Inglés</strong>, <strong>3. Serbio Latín</strong> y <strong>4. Serbio Cirílico</strong>. Al finalizar la lectura, pon a prueba tu comprensión con las tres actividades interactivas y utiliza los botones de traducción al inglés solo cuando desees comprobar el significado de cada pregunta.
+        </p>
+    </header>
+
+    <main>
+        <!-- Lectura Paralela en 4 Idiomas -->
+        <section aria-label="Lectura comparada en cuatro idiomas">
+            <div id="storyContainer" class="story-container">
+                <!-- Párrafos generados dinámicamente en el orden: Español, Inglés, Serbio Latín, Serbio Cirílico -->
+            </div>
+        </section>
+
+        <!-- VEŽBA 1 – Dopuni rečenice -->
+        <section aria-labelledby="h2-vezba1">
+            <h2 id="h2-vezba1">VEŽBA 1 &ndash; Dopuni rečenice</h2>
+            <p>
+                Dopuni rečenice odgovarajućom rečju iz okvira. Presiona <strong>Enter</strong> en cada campo para saltar automáticamente al siguiente ejercicio. Si necesitas ayuda para comprender la frase, pulsa el botón <strong>Ver traducción (EN)</strong>.
+            </p>
+
+            <div class="word-bank">
+                Crna Gora &ndash; more &ndash; prijatelji &ndash; automobilom &ndash; Herceg Novi &ndash; plažu &ndash; Kotor &ndash; Budva &ndash; planine &ndash; kući
+            </div>
+
+            <div id="vezba1List" class="exercise-list"></div>
+
+            <div class="section-footer-bar">
+                <button type="button" class="btn" id="resetVezba1">Reiniciar VEŽBA 1</button>
+                <div id="scoreVezba1" class="score-badge">Aciertos: 0 / 10</div>
+            </div>
+        </section>
+
+        <!-- VEŽBA 2 – Tačno ili netačno? -->
+        <section aria-labelledby="h2-vezba2">
+            <h2 id="h2-vezba2">VEŽBA 2 &ndash; Tačno ili netačno?</h2>
+            <p>
+                Pročitaj rečenice i napiši <strong>T</strong> (tačno) ili <strong>N</strong> (netačno). Presiona la tecla <strong>Enter</strong> para avanzar automáticamente al siguiente campo.
+            </p>
+
+            <div id="vezba2List" class="exercise-list"></div>
+
+            <div class="section-footer-bar">
+                <button type="button" class="btn" id="resetVezba2">Reiniciar VEŽBA 2</button>
+                <div id="scoreVezba2" class="score-badge">Aciertos: 0 / 10</div>
+            </div>
+        </section>
+
+        <!-- VEŽBA 3 – Napravi rečenicu -->
+        <section aria-labelledby="h2-vezba3">
+            <h2 id="h2-vezba3">VEŽBA 3 &ndash; Napravi rečenicu</h2>
+            <p>
+                Sastavi pravilnu rečenicu od ponuđenih reči. Usa la tecla <strong>Enter</strong> para validar tu oración y saltar automáticamente a la siguiente línea.
+            </p>
+
+            <div class="example-box">
+                <strong>Primer:</strong><br>
+                Crna Gora / lepa / je<br>
+                &rarr; <strong>Crna Gora je lepa.</strong>
+            </div>
+
+            <div id="vezba3List" class="exercise-list"></div>
+
+            <div class="section-footer-bar">
+                <button type="button" class="btn" id="resetVezba3">Reiniciar VEŽBA 3</button>
+                <div id="scoreVezba3" class="score-badge">Aciertos: 0 / 10</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p style="text-align: center;">
+            <strong>Leto u Crnoj Gori</strong> &mdash; <strong>Лето у Црној Гори</strong> (Summer in Montenegro)
+        </p>
+    </footer>
+
+    <script>
+        /**
+         * Textos de la historia organizados párrafo por párrafo
+         * Orden estricto: 1. Español, 2. Inglés, 3. Serbio Latín, 4. Serbio Cirílico
+         */
+        const storyParagraphs = [
+            {
+                num: "Párrafo 1",
+                spanish: "Cada verano, me gusta pasar unos días en Montenegro. Es un país conocido por su hermoso mar, sus altas montañas, sus cascos antiguos y su gente hospitalaria. Aunque he visitado Montenegro varias veces antes, cada nuevo viaje me trae una nueva experiencia. Este verano, decidí viajar con mis amigos y quedarme diez días.",
+                english: "Every summer, I like to spend a few days in Montenegro. It is a country known for its beautiful sea, high mountains, old towns, and hospitable people. Although I have visited Montenegro several times before, every new trip brings me a new experience. This summer, I decided to travel with my friends and stay for ten days.",
+                serbianLatin: "Svako leto volim da provedem nekoliko dana u Crnoj Gori. To je zemlja koja je poznata po prelepom moru, visokim planinama, starim gradovima i gostoljubivim ljudima. Iako sam ranije nekoliko puta posećivao Crnu Goru, svako novo putovanje donese mi neko novo iskustvo. Ovog leta odlučio sam da putujem sa prijateljima i da ostanemo deset dana.",
+                serbianCyrillic: "Свако лето волим да проведем неколико дана у Црној Гори. То је земља која је позната по прелепом мору, високим планинама, старим градовима и гостољубивим људима. Иако сам раније неколико пута посећивао Црну Гору, свако ново путовање донесе ми неко ново искуство. Овог лета одлучио сам да путујем са пријатељима и да останемо десет дана."
+            },
+            {
+                num: "Párrafo 2",
+                spanish: "Salimos temprano por la mañana porque queríamos evitar el tráfico pesado en la carretera. Viajamos en automóvil e hicimos varias paradas. Cuando nos acercamos al mar, notamos de inmediato que el aire era diferente. Podíamos oler el mar, y a través de la ventanilla del coche podíamos ver las altas montañas y el cielo azul. Todos estábamos cansados del viaje, pero apenas podíamos esperar para llegar al apartamento.",
+                english: "We set off early in the morning because we wanted to avoid heavy traffic on the road. We traveled by car and took several breaks. When we got close to the sea, we immediately noticed that the air was different. We could smell the sea, and through the car window we could see the high mountains and the blue sky. We were all tired from the journey, but we could hardly wait to arrive at the apartment.",
+                serbianLatin: "Krenuli smo rano ujutru, jer smo želeli da izbegnemo velike gužve na putu. Putovali smo automobilom i pravili nekoliko pauza. Kada smo stigli blizu mora, odmah smo primetili da je vazduh drugačiji. Osećao se miris mora, a kroz prozor automobila videli smo visoke planine i plavo nebo. Svi smo bili umorni od putovanja, ali smo jedva čekali da stignemo do apartmana.",
+                serbianCyrillic: "Кренули смо рано ујутру, јер смо желели да избегнемо велике гужве на путу. Путовали смо аутомобилом и правили неколико пауза. Када смо стигли близу мора, одмах смо приметили да је ваздух другачији. Осећао се мирис мора, а кроз прозор аутомобила видели смо високе планине и плаво небо. Сви смо били уморни од путовања, али смо једва чекали да стигнемо до апартмана."
+            },
+            {
+                num: "Párrafo 3",
+                spanish: "Nuestro primer destino fue Herceg Novi. La ciudad nos gustó de inmediato por sus calles estrechas, sus escaleras y su hermosa vista al mar. Cada mañana nos levantábamos temprano, desayunábamos en la terraza y luego íbamos a la playa. El mar estaba cálido y tranquilo, así que nadamos durante mucho tiempo. Después de nadar, nos sentábamos a la sombra, hablábamos y leíamos libros. Por la noche, caminábamos junto al mar y veíamos la puesta de sol.",
+                english: "Our first destination was Herceg Novi. We immediately liked the town because of its narrow streets, stairs, and beautiful view of the sea. Every morning, we got up early, had breakfast on the terrace, and then went to the beach. The sea was warm and calm, so we swam for a long time. After swimming, we sat in the shade, talked, and read books. In the evening, we walked by the sea and watched the sunset.",
+                serbianLatin: "Naše prvo mesto bilo je Herceg Novi. Grad nam se odmah dopao zbog uskih ulica, stepenica i prelepog pogleda na more. Svakog jutra ustajali smo rano, doručkovali na terasi i zatim odlazili na plažu. More je bilo toplo i mirno, pa smo dugo plivali. Posle kupanja sedeli smo u hladu, razgovarali i čitali knjige. Uveče smo šetali pored mora i posmatrali zalazak sunca.",
+                serbianCyrillic: "Наше прво место било је Херцег Нови. Град нам се одмах допао због уских улица, степеница и прелепог погледа на море. Сваког јутра устајали смо рано, доручковали на тераси и затим одлазили на плажу. Море је било топло и мирно, па смо дуго пливали. После купања седели смо у хладу, разговарали и читали књиге. Увече смо шетали поред мора и посматрали залазак сунца."
+            },
+            {
+                num: "Párrafo 4",
+                spanish: "Un día, decidimos visitar Kotor. El camino a Kotor era muy hermoso, pero también interesante. A un lado de la carretera estaba el mar, y al otro lado había altas montañas. Cuando llegamos a la ciudad, caminamos por el Casco Antiguo y visitamos las plazas, las iglesias y las calles de piedra. Kotor estaba lleno de turistas de diferentes países. Escuchamos muchos idiomas y conocimos a varias personas que también visitaban Montenegro por primera vez.",
+                english: "One day, we decided to visit Kotor. The road to Kotor was very beautiful, but also interesting. On one side of the road there was the sea, and on the other side there were high mountains. When we arrived in the city, we walked through the Old Town and visited the squares, churches, and stone streets. Kotor was full of tourists from different countries. We heard many languages and met several people who were also visiting Montenegro for the first time.",
+                serbianLatin: "Jednog dana odlučili smo da posetimo Kotor. Put do Kotora bio je veoma lep, ali i zanimljiv. Sa jedne strane puta nalazilo se more, a sa druge visoke planine. Kada smo stigli u grad, prošetali smo starim gradom i obišli trgove, crkve i kamene ulice. Kotor je bio pun turista iz različitih zemalja. Čuli smo mnogo jezika i upoznali nekoliko ljudi koji su takođe prvi put dolazili u Crnu Goru.",
+                serbianCyrillic: "Једног дана одлучили смо да посетимо Котор. Пут до Котора био је веома леп, али и занимљив. Са једне стране пута налазило се море, а са друге високе планине. Када смо стигли у град, прошетали смо старим градом и обишли тргове, цркве и камене улице. Котор је био пун туриста из различитих земаља. Чули смо много језика и упознали неколико људи који су такође први пут долазили у Црну Гору."
+            },
+            {
+                num: "Párrafo 5",
+                spanish: "Después de Kotor, fuimos a Budva. Allí había mucha más gente, restaurantes, tiendas y turistas. Durante el día, las playas estaban muy concurridas, pero por la noche disfrutamos paseando por el Casco Antiguo. Una noche, cenamos en un pequeño restaurante. Pedimos pescado, ensalada, pan y varios platos tradicionales. La comida estaba deliciosa y el camarero fue muy amable.",
+                english: "After Kotor, we went to Budva. There were many more people, restaurants, shops, and tourists there. During the day, the beaches were very crowded, but in the evening we enjoyed walking through the Old Town. One evening, we had dinner at a small restaurant. We ordered fish, salad, bread, and several traditional dishes. The food was delicious, and the waiter was very friendly.",
+                serbianLatin: "Posle Kotora otišli smo do Budve. Tamo je bilo mnogo više ljudi, restorana, prodavnica i turista. Tokom dana plaže su bile veoma pune, ali smo uveče uživali u šetnji kroz stari grad. Jedne večeri večerali smo u malom restoranu. Naručili smo ribu, salatu, hleb i nekoliko tradicionalnih jela. Hrana je bila ukusna, a konobar veoma ljubazan.",
+                serbianCyrillic: "После Котора отишли смо до Будве. Тамо је било много више људи, ресторана, продавница и туриста. Током дана плаже су биле веома пуне, али смо увече уживали у шетњи кроз стари град. Једне вечери вечерали смо у малом ресторану. Наручили смо рибу, салату, хлеб и неколико традиционалних јела. Храна је била укусна, а конобар веома љубазан."
+            },
+            {
+                num: "Párrafo 6",
+                spanish: "No queríamos pasar todo el viaje solo en la playa, así que un día fuimos a las montañas. Visitamos la zona de Durmitor y disfrutamos de un paisaje completamente diferente. Allí hacía más fresco que en la costa. Caminamos durante varias horas, tomamos fotografías de la naturaleza y descansamos junto al lago. Fue maravilloso ver cuán diferente puede ser Montenegro dentro de un área tan pequeña.",
+                english: "We did not want to spend the entire trip only at the beach, so one day we went to the mountains. We visited the Durmitor area and enjoyed a completely different landscape. It was cooler there than on the coast. We walked for several hours, took photographs of nature, and rested by the lake. It was wonderful to see how different Montenegro can be within such a small area.",
+                serbianLatin: "Nismo želeli da celo putovanje provedemo samo na plaži, pa smo jednog dana otišli u planine. Posetili smo područje Durmitora i uživali u potpuno drugačijem pejzažu. Tamo je bilo svežije nego na primorju. Šetali smo nekoliko sati, fotografisali prirodu i odmarali se pored jezera. Bilo je lepo videti koliko je Crna Gora različita na malom prostoru.",
+                serbianCyrillic: "Нисмо желели да цело путовање проведемо само на плажи, па смо једног дана отишли у планине. Посетили смо подручје Дурмитора и уживали у потпуно другачијем пејзажу. Тамо је било свежије него на приморју. Шетали смо неколико сати, фотографисали природу и одмарали се поред језера. Било је лепо видети колико је Црна Гора различита на малом простору."
+            },
+            {
+                num: "Párrafo 7",
+                spanish: "Hacia el final de nuestras vacaciones, empezamos a pensar en regresar a casa. Nos dio pena tener que irnos porque nos habíamos acostumbrado al mar, al sol y a los días relajados. De camino a casa, hablamos sobre lo que más habíamos disfrutado. Para mí, el verano en Montenegro no es solo unas vacaciones. Es un momento en el que puedo olvidarme de las responsabilidades diarias, pasar más tiempo con mis amigos y disfrutar de la naturaleza. Por eso siempre espero con ansias regresar, y creo que pasaré muchos veranos más en la costa montenegrina.",
+                english: "Towards the end of our vacation, we began thinking about returning home. We were sorry that we had to leave because we had got used to the sea, the sunshine, and the relaxed days. On the way home, we talked about what we had enjoyed the most. For me, summer in Montenegro is not just a vacation. It is a time when I can forget about everyday responsibilities, spend more time with my friends, and enjoy nature. That is why I always look forward to returning, and I believe that I will spend many more summers on the Montenegrin coast.",
+                serbianLatin: "Pred kraj odmora počeli smo da razmišljamo o povratku. Bilo nam je žao što moramo da krenemo, jer smo se navikli na more, sunce i opuštene dane. Na putu kući razgovarali smo o tome šta nam se najviše dopalo. Leto u Crnoj Gori za mene nije samo odmor. To je vreme kada mogu da zaboravim svakodnevne obaveze, provedem više vremena sa prijateljima i uživam u prirodi. Zato se uvek rado vraćam i verujem da ću još mnogo puta provesti leto na crnogorskom primorju.",
+                serbianCyrillic: "Пред крај одмора почели смо да размишљамо о повратку. Било нам је жао што морамо да кренемо, јер смо се навикли на море, сунце и опуштене дане. На путу кући разговарали смо о томе шта нам се највише допало. Лето у Црној Гори за мене није само одмор. То је време када могу да заборавим свакодневне обавезе, проведем више времена са пријатељима и уживам у природи. Зато се увек радо враћам и верујем да ћу још много пута провести лето на црногорском приморју."
+            }
+        ];
+
+        const storyContainer = document.getElementById('storyContainer');
+
+        storyParagraphs.forEach(p => {
+            const card = document.createElement('article');
+            card.className = 'paragraph-card';
+            card.innerHTML = `
+                <div class="paragraph-header">
+                    <span class="paragraph-badge">${p.num}</span>
+                </div>
+                <div class="lang-grid">
+                    <div class="lang-block">
+                        <span class="lang-label">1. Español</span>
+                        <p>${p.spanish}</p>
+                    </div>
+                    <div class="lang-block">
+                        <span class="lang-label">2. English</span>
+                        <p>${p.english}</p>
+                    </div>
+                    <div class="lang-block">
+                        <span class="lang-label">3. Srpski (Latinica)</span>
+                        <p>${p.serbianLatin}</p>
+                    </div>
+                    <div class="lang-block">
+                        <span class="lang-label">4. Српски (Ћирилица)</span>
+                        <p>${p.serbianCyrillic}</p>
+                    </div>
+                </div>
+            `;
+            storyContainer.appendChild(card);
+        });
+
+        /**
+         * Datos de VEŽBA 1 – Dopuni rečenice (con traducción al inglés oculta bajo botón)
+         */
+        const vezba1Data = [
+            {
+                prompt: "1. Svakog leta idem u __________.",
+                english: "Every summer I go to Montenegro.",
+                answers: ["crnu goru", "crna gora"],
+                displayAnswer: "Crnu Goru (Crna Gora)"
+            },
+            {
+                prompt: "2. Crna Gora ima lepo __________.",
+                english: "Montenegro has a beautiful sea.",
+                answers: ["more"],
+                displayAnswer: "more"
+            },
+            {
+                prompt: "3. Ovog leta putujem sa svojim __________.",
+                english: "This summer I am traveling with my friends.",
+                answers: ["prijateljima", "prijatelji"],
+                displayAnswer: "prijateljima (prijatelji)"
+            },
+            {
+                prompt: "4. Putujemo __________.",
+                english: "We travel by car.",
+                answers: ["automobilom"],
+                displayAnswer: "automobilom"
+            },
+            {
+                prompt: "5. Naše prvo mesto je __________.",
+                english: "Our first place is Herceg Novi.",
+                answers: ["herceg novi"],
+                displayAnswer: "Herceg Novi"
+            },
+            {
+                prompt: "6. Svakog dana idemo na __________.",
+                english: "Every day we go to the beach.",
+                answers: ["plažu", "plazu"],
+                displayAnswer: "plažu"
+            },
+            {
+                prompt: "7. Jednog dana posećujemo __________.",
+                english: "One day we visit Kotor.",
+                answers: ["kotor"],
+                displayAnswer: "Kotor"
+            },
+            {
+                prompt: "8. Posle Kotora idemo u __________.",
+                english: "After Kotor we go to Budva.",
+                answers: ["budvu", "budva"],
+                displayAnswer: "Budvu (Budva)"
+            },
+            {
+                prompt: "9. Jednog dana idemo u __________.",
+                english: "One day we go to the mountains.",
+                answers: ["planine"],
+                displayAnswer: "planine"
+            },
+            {
+                prompt: "10. Na kraju odmora vraćamo se __________.",
+                english: "At the end of the vacation we return home.",
+                answers: ["kući", "kuci"],
+                displayAnswer: "kući"
+            }
+        ];
+
+        /**
+         * Datos de VEŽBA 2 – Tačno ili netačno? (con traducción al inglés oculta bajo botón)
+         */
+        const vezba2Data = [
+            {
+                prompt: "1. Student ide u Crnu Goru svakog leta.",
+                english: "The student goes to Montenegro every summer.",
+                answer: "t",
+                displayAnswer: "T (Tačno)"
+            },
+            {
+                prompt: "2. Putuje avionom.",
+                english: "He travels by plane.",
+                answer: "n",
+                displayAnswer: "N (Netačno — putuje automobilom)"
+            },
+            {
+                prompt: "3. Putuje sa prijateljima.",
+                english: "He travels with friends.",
+                answer: "t",
+                displayAnswer: "T (Tačno)"
+            },
+            {
+                prompt: "4. Prvo posećuje Budvu.",
+                english: "First he visits Budva.",
+                answer: "n",
+                displayAnswer: "N (Netačno — prvo posećuje Herceg Novi)"
+            },
+            {
+                prompt: "5. U Herceg Novom ide na plažu.",
+                english: "In Herceg Novi he goes to the beach.",
+                answer: "t",
+                displayAnswer: "T (Tačno)"
+            },
+            {
+                prompt: "6. More je hladno i nemirno.",
+                english: "The sea is cold and rough.",
+                answer: "n",
+                displayAnswer: "N (Netačno — more je toplo i mirno)"
+            },
+            {
+                prompt: "7. Student posećuje Kotor.",
+                english: "The student visits Kotor.",
+                answer: "t",
+                displayAnswer: "T (Tačno)"
+            },
+            {
+                prompt: "8. Posle Kotora ide u Budvu.",
+                english: "After Kotor he goes to Budva.",
+                answer: "t",
+                displayAnswer: "T (Tačno)"
+            },
+            {
+                prompt: "9. U planinama je toplije nego na moru.",
+                english: "In the mountains it is warmer than at the sea.",
+                answer: "n",
+                displayAnswer: "N (Netačno — u planinama je svežije)"
+            },
+            {
+                prompt: "10. Na kraju odmora vraća se kući.",
+                english: "At the end of the vacation he returns home.",
+                answer: "t",
+                displayAnswer: "T (Tačno)"
+            }
+        ];
+
+        /**
+         * Datos de VEŽBA 3 – Napravi rečenicu (con traducción al inglés oculta bajo botón)
+         */
+        const vezba3Data = [
+            {
+                prompt: "1. ja / Crnu Goru / volim",
+                english: "I love Montenegro.",
+                answers: ["ja volim crnu goru", "volim crnu goru"],
+                displayAnswer: "Ja volim Crnu Goru."
+            },
+            {
+                prompt: "2. putujem / prijateljima / sa",
+                english: "I travel with friends.",
+                answers: ["putujem sa prijateljima"],
+                displayAnswer: "Putujem sa prijateljima."
+            },
+            {
+                prompt: "3. automobilom / putujemo",
+                english: "We travel by car.",
+                answers: ["putujemo automobilom", "automobilom putujemo"],
+                displayAnswer: "Putujemo automobilom."
+            },
+            {
+                prompt: "4. more / je / lepo",
+                english: "The sea is beautiful.",
+                answers: ["more je lepo"],
+                displayAnswer: "More je lepo."
+            },
+            {
+                prompt: "5. plažu / svaki dan / idemo / na",
+                english: "Every day we go to the beach.",
+                answers: [
+                    "svaki dan idemo na plažu",
+                    "svaki dan idemo na plazu",
+                    "idemo na plažu svaki dan",
+                    "idemo na plazu svaki dan"
+                ],
+                displayAnswer: "Svaki dan idemo na plažu."
+            },
+            {
+                prompt: "6. Kotor / posećujemo",
+                english: "We visit Kotor.",
+                answers: ["posećujemo kotor", "posecujemo kotor"],
+                displayAnswer: "Posećujemo Kotor."
+            },
+            {
+                prompt: "7. restoran / u / večeramo",
+                english: "We have dinner in a restaurant.",
+                answers: ["večeramo u restoranu", "veceramo u restoranu", "večeramo u restoran", "veceramo u restoran"],
+                displayAnswer: "Večeramo u restoranu."
+            },
+            {
+                prompt: "8. planine / idemo / u",
+                english: "We go to the mountains.",
+                answers: ["idemo u planine"],
+                displayAnswer: "Idemo u planine."
+            },
+            {
+                prompt: "9. kući / vraćamo se",
+                english: "We return home.",
+                answers: ["vraćamo se kući", "vracamo se kuci"],
+                displayAnswer: "Vraćamo se kući."
+            },
+            {
+                prompt: "10. leto / volim / u Crnoj Gori",
+                english: "I love summer in Montenegro.",
+                answers: ["volim leto u crnoj gori"],
+                displayAnswer: "Volim leto u Crnoj Gori."
+            }
+        ];
+
+        function normalizeText(str) {
+            return str
+                .trim()
+                .toLowerCase()
+                .replace(/[.!?]+$/g, '')
+                .replace(/\s+/g, ' ');
+        }
+
+        /**
+         * Genera una actividad interactiva con botón de traducción al inglés y salto de foco con Enter
+         */
+        function renderExerciseSection(containerId, scoreId, resetBtnId, items, groupClass, isTF = false) {
+            const container = document.getElementById(containerId);
+            const scoreEl = document.getElementById(scoreId);
+            const resetBtn = document.getElementById(resetBtnId);
+
+            function build() {
+                container.innerHTML = '';
+
+                items.forEach((item, index) => {
+                    const row = document.createElement('div');
+                    row.className = 'exercise-row';
+
+                    const top = document.createElement('div');
+                    top.className = 'exercise-top';
+
+                    const promptSpan = document.createElement('div');
+                    promptSpan.className = 'exercise-prompt';
+                    promptSpan.textContent = item.prompt;
+
+                    const rightActions = document.createElement('div');
+                    rightActions.className = 'exercise-actions-right';
+
+                    const toggleBtn = document.createElement('button');
+                    toggleBtn.type = 'button';
+                    toggleBtn.className = 'btn btn-sm';
+                    toggleBtn.textContent = 'Ver traducción (EN)';
+
+                    const translationBox = document.createElement('div');
+                    translationBox.className = 'en-translation-box';
+                    translationBox.innerHTML = `<strong>English:</strong> ${item.english}`;
+
+                    toggleBtn.addEventListener('click', () => {
+                        const isOpen = translationBox.classList.toggle('visible');
+                        toggleBtn.textContent = isOpen ? 'Ocultar traducción (EN)' : 'Ver traducción (EN)';
+                    });
+
+                    rightActions.appendChild(toggleBtn);
+                    top.appendChild(promptSpan);
+                    top.appendChild(rightActions);
+
+                    const inputRow = document.createElement('div');
+                    inputRow.className = 'exercise-input-row';
+
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.className = isTF ? `${groupClass} tf-input` : groupClass;
+                    input.placeholder = isTF ? 'T / N' : 'Escribe tu respuesta y pulsa Enter';
+                    if (isTF) input.maxLength = 1;
+                    input.setAttribute('aria-label', `Respuesta para ${item.prompt}`);
+
+                    const feedback = document.createElement('div');
+                    feedback.className = 'feedback-text';
+
+                    function validate() {
+                        const val = normalizeText(input.value);
+                        if (!val) {
+                            feedback.textContent = '';
+                            feedback.className = 'feedback-text';
+                            input.dataset.valid = 'false';
+                            return;
+                        }
+
+                        const isCorrect = isTF
+                            ? val === item.answer
+                            : item.answers.includes(val);
+
+                        if (isCorrect) {
+                            feedback.innerHTML = `Correcto: <strong>${item.displayAnswer}</strong>`;
+                            feedback.className = 'feedback-text ok';
+                            input.dataset.valid = 'true';
+                        } else {
+                            feedback.innerHTML = `Sigue intentando (Respuesta: ${item.displayAnswer})`;
+                            feedback.className = 'feedback-text';
+                            input.dataset.valid = 'false';
+                        }
+                    }
+
+                    input.addEventListener('input', () => {
+                        validate();
+                        updateSectionScore();
+                    });
+
+                    // REGLA CRÍTICA: Salto automático de cursor (focus) mediante keydown (tecla Enter)
+                    input.addEventListener('keydown', (event) => {
+                        if (event.key === 'Enter') {
+                            event.preventDefault();
+                            validate();
+                            updateSectionScore();
+
+                            const fields = Array.from(document.querySelectorAll(`.${groupClass}`));
+                            const pos = fields.indexOf(event.target);
+                            if (pos !== -1 && pos < fields.length - 1) {
+                                fields[pos + 1].focus();
+                            } else if (pos === fields.length - 1) {
+                                fields[0].focus();
+                            }
+                        }
+                    });
+
+                    inputRow.appendChild(input);
+                    inputRow.appendChild(feedback);
+
+                    row.appendChild(top);
+                    row.appendChild(inputRow);
+                    row.appendChild(translationBox);
+                    container.appendChild(row);
+                });
+
+                updateSectionScore();
+            }
+
+            function updateSectionScore() {
+                const fields = Array.from(document.querySelectorAll(`.${groupClass}`));
+                const okCount = fields.filter(f => f.dataset.valid === 'true').length;
+                scoreEl.textContent = `Aciertos: ${okCount} / ${fields.length}`;
+            }
+
+            resetBtn.addEventListener('click', () => {
+                build();
+                const first = document.querySelector(`.${groupClass}`);
+                if (first) first.focus();
+            });
+
+            build();
+        }
+
+        // Inicialización de las tres actividades
+        renderExerciseSection('vezba1List', 'scoreVezba1', 'resetVezba1', vezba1Data, 'field-v1', false);
+        renderExerciseSection('vezba2List', 'scoreVezba2', 'resetVezba2', vezba2Data, 'field-v2', true);
+        renderExerciseSection('vezba3List', 'scoreVezba3', 'resetVezba3', vezba3Data, 'field-v3', false);
+    </script>
+</body>
+</html>

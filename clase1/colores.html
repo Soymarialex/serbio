@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOJE | colors</title>
+    <!-- Ruta relativa con parámetro de caché ?v=1.0 según Guía de Estilo -->
+    <!-- <link rel="stylesheet" href="assets/styles.css?v=1.0"> -->
+    <style>
+        /*
+         * IDENTIDAD CROMÁTICA EXCLUSIVA DE LA INTERFAZ
+         * Color Primario (Títulos y Acentos): #FF79AC (Flamingo Pink)
+         * Color Secundario (Fondo de Botones/Resaltado): #FFB3D1 (Rosa Claro)
+         * Color de Texto Principal: #121118 (Eerie Black)
+         * Fondo de Página: #FFFFFF (Blanco puro)
+         * Líneas Divisoras: #E0E0E0 (Gris claro)
+         */
+        :root {
+            --color-primary: #FF79AC;
+            --color-secondary: #FFB3D1;
+            --color-text: #121118;
+            --color-bg: #FFFFFF;
+            --color-border: #E0E0E0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, sans-serif;
+            font-weight: 500;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            padding: 1.75rem 1.25rem;
+            max-width: 1220px;
+            margin: 0 auto;
+        }
+
+        /* Títulos (H1) */
+        h1 {
+            font-size: 2.35rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.45rem;
+            letter-spacing: -0.01em;
+        }
+
+        /* Subtítulos (H2) */
+        h2 {
+            font-size: 1.55rem;
+            font-weight: 600;
+            color: var(--color-text);
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Cuerpo de Texto Justificado */
+        p {
+            font-size: 1.05rem;
+            text-align: justify;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        header {
+            margin-bottom: 2.25rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        /* Barra de filtro rápido */
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1.25rem;
+            padding: 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            background-color: var(--color-bg);
+        }
+
+        .search-wrap {
+            flex: 1 1 300px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            font-family: inherit;
+            font-size: 1rem;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--color-primary);
+        }
+
+        .btn {
+            background-color: var(--color-secondary);
+            color: var(--color-text);
+            border: 1px solid var(--color-primary);
+            padding: 0.65rem 1.2rem;
+            font-family: inherit;
+            font-size: 0.98rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--color-primary);
+            color: var(--color-bg);
+        }
+
+        /* Cuadrícula de Colores (Boja / Srpski Latin / Српски Ћирилица / English) */
+        .colors-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.15rem;
+        }
+
+        .color-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.15rem 1.25rem;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            background-color: var(--color-bg);
+            transition: border-color 0.2s ease;
+        }
+
+        .color-card:hover {
+            border-color: var(--color-primary);
+        }
+
+        .emoji-badge {
+            font-size: 1.85rem;
+            min-width: 58px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-secondary);
+            border: 1px solid var(--color-primary);
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .color-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            flex: 1;
+        }
+
+        .color-latin {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        .color-cyrillic {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        .color-english {
+            font-size: 0.96rem;
+            color: var(--color-primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        /* Sección de Ejemplos (Primeri) */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.1rem;
+        }
+
+        .example-card {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            padding: 1rem 1.2rem;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            background-color: var(--color-bg);
+            transition: border-color 0.2s ease;
+        }
+
+        .example-card:hover {
+            border-color: var(--color-primary);
+        }
+
+        .example-emoji {
+            font-size: 1.65rem;
+            flex-shrink: 0;
+        }
+
+        .example-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .sep {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        /* Sección Gramatical (Važno: Género y Colores Invariables) */
+        .grammar-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+
+        .grammar-box {
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.35rem;
+            background-color: var(--color-bg);
+        }
+
+        .grammar-box-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.85rem;
+            padding-bottom: 0.45rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .grammar-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .grammar-list li {
+            padding: 0.65rem 0.9rem;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background-color: var(--color-bg);
+        }
+
+        .invariable-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .invariable-pill {
+            background-color: var(--color-secondary);
+            color: var(--color-text);
+            border: 1px solid var(--color-primary);
+            padding: 0.3rem 0.75rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        /* Sección de Práctica Interactiva con navegación Enter */
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.15rem;
+            margin-top: 1.25rem;
+        }
+
+        .practice-item {
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.15rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .practice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 0.45rem;
+        }
+
+        .practice-feedback {
+            font-size: 0.92rem;
+            min-height: 1.4rem;
+            font-weight: 600;
+        }
+
+        .practice-feedback.ok {
+            color: var(--color-primary);
+        }
+
+        .practice-controls {
+            margin-top: 1.25rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .score-pill {
+            padding: 0.65rem 1.15rem;
+            border-radius: 8px;
+            border: 1px solid var(--color-primary);
+            background-color: var(--color-secondary);
+            font-weight: 700;
+        }
+
+        footer {
+            border-top: 1px solid var(--color-border);
+            padding-top: 1.25rem;
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        /* Adaptabilidad Móvil */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .colors-grid,
+            .examples-grid,
+            .grammar-grid,
+            .practice-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>BOJE</h1>
+        <h2>colors</h2>
+        <p>
+            Aprende los nombres de los colores en serbio (<strong>Boje / Боје</strong>) presentados con sus tres formas de género gramatical (<strong>masculino / femenino / neutro</strong>) tanto en <strong>alfabeto latino</strong> como en <strong>alfabeto cirílico</strong>, acompañados de su significado en <strong>inglés</strong>, emojis ilustrativos y ejemplos cotidianos.
+        </p>
+
+        <div class="toolbar">
+            <div class="search-wrap">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Buscar color en serbio latino, cirílico o inglés (ej. crven, црвен, red)..." 
+                    aria-label="Buscar color"
+                >
+            </div>
+            <button type="button" class="btn" id="resetBtn">Mostrar Todos</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección 1: Lista Completa de Colores -->
+        <section aria-labelledby="h2-boje">
+            <h2 id="h2-boje">Boja &mdash; Srpski (Latinica / Ћирилица) &mdash; English</h2>
+            <div id="colorsGrid" class="colors-grid">
+                <!-- Generado dinámicamente -->
+            </div>
+        </section>
+
+        <!-- Sección 2: Ejemplos (Primeri) -->
+        <section aria-labelledby="h2-primeri">
+            <h2 id="h2-primeri">Primeri / Примери (Examples)</h2>
+            <p>
+                Observa cómo los colores concuerdan con los sustantivos en ejemplos reales de uso diario en <strong>serbio latino</strong>, <strong>serbio cirílico</strong> e <strong>inglés</strong>:
+            </p>
+            <div id="examplesGrid" class="examples-grid">
+                <!-- Generado dinámicamente -->
+            </div>
+        </section>
+
+        <!-- Sección 3: Reglas Gramaticales de Género (Važno) -->
+        <section aria-labelledby="h2-vazno">
+            <h2 id="h2-vazno">Važno / Важно (Grammatical Rules)</h2>
+            <div class="grammar-grid">
+                <!-- Regla 1: Cambio según el género del sustantivo -->
+                <article class="grammar-box">
+                    <div class="grammar-box-title">Boja se menja prema rodu imenice / Боја се мења према роду именице</div>
+                    <p>
+                        En serbio, la mayoría de los adjetivos de color cambian su terminación según el <strong>género gramatical del sustantivo</strong> al que acompañan:
+                    </p>
+                    <ul class="grammar-list">
+                        <li>
+                            🔴 <strong>crven auto</strong> / <strong>црвен ауто</strong> &mdash; <strong>muški rod</strong> (masculine gender &bull; red car)
+                        </li>
+                        <li>
+                            🔴 <strong>crvena kuća</strong> / <strong>црвена кућа</strong> &mdash; <strong>ženski rod</strong> (feminine gender &bull; red house)
+                        </li>
+                        <li>
+                            🔴 <strong>crveno more</strong> / <strong>црвено море</strong> &mdash; <strong>srednji rod</strong> (neuter gender &bull; red sea)
+                        </li>
+                    </ul>
+                </article>
+
+                <!-- Regla 2: Colores invariables -->
+                <article class="grammar-box">
+                    <div class="grammar-box-title">Nepromenljive boje / Непроменљиве боје</div>
+                    <p>
+                        Los siguientes colores de origen extranjero suelen mantenerse <strong>invariables</strong> (najčešće ostaju isti) en todos los géneros:
+                    </p>
+                    <div class="invariable-tags">
+                        <span class="invariable-pill">🟤 braon / браон</span>
+                        <span class="invariable-pill">🏜️ bež / беж</span>
+                        <span class="invariable-pill">🍷 bordo / бордо</span>
+                        <span class="invariable-pill">🌌 teget / тегет</span>
+                        <span class="invariable-pill">🩷 roze / розе</span>
+                    </div>
+                    <ul class="grammar-list">
+                        <li>
+                            🟤 <strong>braon auto</strong> / <strong>браон ауто</strong> (brown car &bull; muški rod)
+                        </li>
+                        <li>
+                            🟤 <strong>braon kuća</strong> / <strong>браон кућа</strong> (brown house &bull; ženski rod)
+                        </li>
+                        <li>
+                            🟤 <strong>braon more</strong> / <strong>браон море</strong> (brown sea &bull; srednji rod)
+                        </li>
+                        <li>
+                            🩷 <strong>roze auto</strong> / <strong>розе ауто</strong> (pink car &bull; muški rod)
+                        </li>
+                        <li>
+                            🩷 <strong>roze haljina</strong> / <strong>розе хаљина</strong> (pink dress &bull; ženski rod)
+                        </li>
+                        <li>
+                            🩷 <strong>roze more</strong> / <strong>розе море</strong> (pink sea &bull; srednji rod)
+                        </li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <!-- Nueva Sección 2: BOJA + IMENICA -->
+        <section aria-labelledby="h2-boja-imenica">
+            <h2 id="h2-boja-imenica">2. BOJA + IMENICA</h2>
+            <p>
+                The color adjective must agree with the noun (Slaže se sa rodom imenice).
+            </p>
+            <div class="grammar-grid" style="margin-top: 1.25rem;">
+                <article class="grammar-box">
+                    <div class="grammar-box-title">Muški rod – Masculine</div>
+                    <ul class="grammar-list">
+                        <li>🔴 <strong>crven auto</strong> — a red car</li>
+                        <li>🔵 <strong>plav automobil</strong> — a blue car</li>
+                        <li>🟢 <strong>zelen kaput</strong> — a green coat</li>
+                        <li>⬛ <strong>crn telefon</strong> — a black phone</li>
+                    </ul>
+                </article>
+
+                <article class="grammar-box">
+                    <div class="grammar-box-title">Ženski rod – Feminine</div>
+                    <ul class="grammar-list">
+                        <li>🔴 <strong>crvena kuća</strong> — a red house</li>
+                        <li>🔵 <strong>plava haljina</strong> — a blue dress</li>
+                        <li>🟢 <strong>zelena torba</strong> — a green bag</li>
+                        <li>⬛ <strong>crna majica</strong> — a black T-shirt</li>
+                    </ul>
+                </article>
+
+                <article class="grammar-box">
+                    <div class="grammar-box-title">Srednji rod – Neuter</div>
+                    <ul class="grammar-list">
+                        <li>🔴 <strong>crveno vino</strong> — red wine</li>
+                        <li>🔵 <strong>plavo more</strong> — blue sea</li>
+                        <li>🟢 <strong>zeleno drvo</strong> — green tree</li>
+                        <li>⬛ <strong>crno pivo</strong> — black beer</li>
+                    </ul>
+                </article>
+
+                <article class="grammar-box">
+                    <div class="grammar-box-title">Important: Endings comparison</div>
+                    <ul class="grammar-list">
+                        <li>Muški: <strong>plav</strong></li>
+                        <li>Ženski: <strong>plava</strong></li>
+                        <li>Srednji: <strong>plavo</strong></li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <!-- Nueva Sección 3: PRIMERI -->
+        <section aria-labelledby="h2-primeri-oraciones">
+            <h2 id="h2-primeri-oraciones">3. PRIMERI</h2>
+            <p>
+                Ejemplos de oraciones completas en serbio y su traducción al inglés:
+            </p>
+            <div class="examples-grid" style="grid-template-columns: repeat(2, 1fr); margin-top: 1.25rem;">
+                <div class="example-card">
+                    <div class="example-text">
+                        <strong>Ovo je crveni automobil.</strong><br>
+                        <span style="color: var(--color-primary);">This is the red car.</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="example-text">
+                        <strong>Ovo je plava kuća.</strong><br>
+                        <span style="color: var(--color-primary);">This is the blue house.</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="example-text">
+                        <strong>Ovo je zeleno drvo.</strong><br>
+                        <span style="color: var(--color-primary);">This is the green tree.</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="example-text">
+                        <strong>Moja majica je crna.</strong><br>
+                        <span style="color: var(--color-primary);">My T-shirt is black.</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="example-text">
+                        <strong>Njena haljina je bela.</strong><br>
+                        <span style="color: var(--color-primary);">Her dress is white.</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="example-text">
+                        <strong>More je plavo.</strong><br>
+                        <span style="color: var(--color-primary);">The sea is blue.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Práctica Interactiva Existente -->
+        <section aria-labelledby="h2-vezbanje">
+            <h2 id="h2-vezbanje">Vežbanje / Вежбање (Interactive Practice)</h2>
+            <p>
+                Completa la forma correcta del color en <strong>serbio latino</strong> respetando el género del sustantivo o su significado en inglés. Presiona la tecla <strong>Enter</strong> en cada campo para validar y saltar automáticamente al siguiente ejercicio.
+            </p>
+
+            <div id="practiceGrid" class="practice-grid">
+                <!-- Generado dinámicamente -->
+            </div>
+
+            <div class="practice-controls">
+                <button type="button" class="btn" id="resetPracticeBtn">Reiniciar Práctica</button>
+                <div id="scoreDisplay" class="score-pill">Aciertos: 0 / 6</div>
+            </div>
+        </section>
+
+        <!-- Nuevas Secciones de Ejercicios: Vežba 1 a Vežba 5 y Zapamti -->
+        <section aria-labelledby="h2-v1">
+            <h2 id="h2-v1">VEŽBA 1 – PREVEDI BOJE</h2>
+            <p>Prevedi na srpski:</p>
+            <div id="v1Grid" class="practice-grid"></div>
+            <div class="practice-controls">
+                <button type="button" class="btn" id="resetV1">Reiniciar Vežba 1</button>
+                <div id="scoreV1" class="score-pill">Aciertos: 0 / 10</div>
+            </div>
+        </section>
+
+        <section aria-labelledby="h2-v2">
+            <h2 id="h2-v2">VEŽBA 2 – IZABERI PRAVILAN OBLIK</h2>
+            <p>Elige la opción correcta con Enter:</p>
+            <div id="v2Grid" class="practice-grid"></div>
+            <div class="practice-controls">
+                <button type="button" class="btn" id="resetV2">Reiniciar Vežba 2</button>
+                <div id="scoreV2" class="score-pill">Aciertos: 0 / 5</div>
+            </div>
+        </section>
+
+        <section aria-labelledby="h2-v3">
+            <h2 id="h2-v3">VEŽBA 3 – BROJEVI</h2>
+            <p>Napiši brojeve slovima:</p>
+            <div id="v3Grid" class="practice-grid"></div>
+            <div class="practice-controls">
+                <button type="button" class="btn" id="resetV3">Reiniciar Vežba 3</button>
+                <div id="scoreV3" class="score-pill">Aciertos: 0 / 10</div>
+            </div>
+        </section>
+
+        <section aria-labelledby="h2-v4">
+            <h2 id="h2-v4">VEŽBA 4 – BOJA + BROJ</h2>
+            <p>Dopuni pravilnim oblikom:</p>
+            <div id="v4Grid" class="practice-grid"></div>
+            <div class="practice-controls">
+                <button type="button" class="btn" id="resetV4">Reiniciar Vežba 4</button>
+                <div id="scoreV4" class="score-pill">Aciertos: 0 / 8</div>
+            </div>
+        </section>
+
+        <section aria-labelledby="h2-v5">
+            <h2 id="h2-v5">VEŽBA 5 – PREVEDI NA SRPSKI</h2>
+            <p>Prevedi na srpski jezik:</p>
+            <div id="v5Grid" class="practice-grid"></div>
+            <div class="practice-controls">
+                <button type="button" class="btn" id="resetV5">Reiniciar Vežba 5</button>
+                <div id="scoreV5" class="score-pill">Aciertos: 0 / 8</div>
+            </div>
+        </section>
+
+        <!-- Sección ⭐ ZAPAMTI ⭐ -->
+        <section aria-labelledby="h2-zapamti">
+            <h2 id="h2-zapamti">⭐ ZAPAMTI ⭐</h2>
+            <div class="grammar-grid">
+                <article class="grammar-box">
+                    <div class="grammar-box-title">&bull; BOJE</div>
+                    <ul class="grammar-list">
+                        <li>muški: crven auto</li>
+                        <li>ženski: crvena kuća</li>
+                        <li>srednji: crveno more</li>
+                    </ul>
+                </article>
+                <article class="grammar-box">
+                    <div class="grammar-box-title">&bull; BROJEVI</div>
+                    <ul class="grammar-list">
+                        <li><strong>1:</strong> jedan auto</li>
+                        <li><strong>2&ndash;4:</strong> dva auta, tri auta, četiri auta</li>
+                        <li><strong>5+:</strong> pet auta, šest auta, deset auta</li>
+                        <li><em>I kod ženskog roda:</em> jedna kuća &rarr; dve kuće &rarr; pet kuća</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p style="text-align: center;">
+            <strong>BOJE / БОЈЕ</strong> &mdash; Colors in Serbian (Latinica / Ћирилица / English)
+        </p>
+    </footer>
+
+    <script>
+        /**
+         * Datos de colores en Serbio Latín, Serbio Cirílico, Inglés y Emojis
+         */
+        const colorsData = [
+            {
+                emoji: "🔴",
+                latin: "crven / crvena / crveno",
+                cyrillic: "црвен / црвена / црвено",
+                english: "red"
+            },
+            {
+                emoji: "🔵",
+                latin: "plav / plava / plavo",
+                cyrillic: "плав / плава / плаво",
+                english: "blue"
+            },
+            {
+                emoji: "🟢",
+                latin: "zelen / zelena / zeleno",
+                cyrillic: "зелен / зелена / зелено",
+                english: "green"
+            },
+            {
+                emoji: "🟡",
+                latin: "žut / žuta / žuto",
+                cyrillic: "жут / жута / жуто",
+                english: "yellow"
+            },
+            {
+                emoji: "⬛",
+                latin: "crn / crna / crno",
+                cyrillic: "црн / црна / црно",
+                english: "black"
+            },
+            {
+                emoji: "⬜",
+                latin: "beo / bela / belo",
+                cyrillic: "бео / бела / бело",
+                english: "white"
+            },
+            {
+                emoji: "🩶",
+                latin: "siv / siva / sivo",
+                cyrillic: "сив / сива / сиво",
+                english: "grey"
+            },
+            {
+                emoji: "🟠",
+                latin: "narandžast / narandžasta / narandžasto",
+                cyrillic: "наранџаст / наранџаста / наранџасто",
+                english: "orange"
+            },
+            {
+                emoji: "🟣",
+                latin: "ljubičast / ljubičasta / ljubičasto",
+                cyrillic: "љубичаст / љубичаста / љубичасто",
+                english: "purple"
+            },
+            {
+                emoji: "🩷",
+                latin: "roze",
+                cyrillic: "розе",
+                english: "pink"
+            },
+            {
+                emoji: "🟤",
+                latin: "braon",
+                cyrillic: "браон",
+                english: "brown"
+            },
+            {
+                emoji: "🟨✨",
+                latin: "zlatan / zlatna / zlatno",
+                cyrillic: "златан / златна / златно",
+                english: "golden"
+            },
+            {
+                emoji: "⬜✨",
+                latin: "srebrn / srebrna / srebrno",
+                cyrillic: "сребрн / сребрна / сребрно",
+                english: "silver"
+            }
+        ];
+
+        /**
+         * Ejemplos (Primeri) en Serbio Latín, Serbio Cirílico e Inglés
+         */
+        const examplesData = [
+            { emoji: "🚗🔴", latin: "crven auto", cyrillic: "црвен ауто", english: "red car" },
+            { emoji: "🏠🔵", latin: "plava kuća", cyrillic: "плава кућа", english: "blue house" },
+            { emoji: "🌳🟢", latin: "zeleno drvo", cyrillic: "зелено дрво", english: "green tree" },
+            { emoji: "👕🟡", latin: "žuta majica", cyrillic: "жута мајица", english: "yellow T-shirt" },
+            { emoji: "👜⬛", latin: "crna torba", cyrillic: "црна торба", english: "black bag" },
+            { emoji: "🪑⬜", latin: "bela stolica", cyrillic: "бела столица", english: "white chair" },
+            { emoji: "🏀🟠", latin: "narandžasta lopta", cyrillic: "наранџаста лопта", english: "orange ball" },
+            { emoji: "👗🟣", latin: "ljubičasta haljina", cyrillic: "љубичаста хаљина", english: "purple dress" },
+            { emoji: "👚🩷", latin: "roze majica", cyrillic: "розе мајица", english: "pink T-shirt" },
+            { emoji: "👞🟤", latin: "braon cipele", cyrillic: "браон ципеле", english: "brown shoes" }
+        ];
+
+        const colorsGrid = document.getElementById('colorsGrid');
+        const examplesGrid = document.getElementById('examplesGrid');
+        const searchInput = document.getElementById('searchInput');
+        const resetBtn = document.getElementById('resetBtn');
+
+        function renderColors(items) {
+            colorsGrid.innerHTML = '';
+
+            if (items.length === 0) {
+                const empty = document.createElement('p');
+                empty.textContent = 'No se encontraron colores que coincidan con tu búsqueda.';
+                colorsGrid.appendChild(empty);
+                return;
+            }
+
+            items.forEach(item => {
+                const card = document.createElement('article');
+                card.className = 'color-card';
+                card.innerHTML = `
+                    <div class="emoji-badge" aria-hidden="true">${item.emoji}</div>
+                    <div class="color-details">
+                        <div class="color-latin">${item.latin}</div>
+                        <div class="color-cyrillic">${item.cyrillic}</div>
+                        <div class="color-english">${item.english}</div>
+                    </div>
+                `;
+                colorsGrid.appendChild(card);
+            });
+        }
+
+        function renderExamples() {
+            examplesGrid.innerHTML = '';
+            examplesData.forEach(ex => {
+                const card = document.createElement('article');
+                card.className = 'example-card';
+                card.innerHTML = `
+                    <span class="example-emoji" aria-hidden="true">${ex.emoji}</span>
+                    <div class="example-text">
+                        <div>
+                            <strong>${ex.latin}</strong> <span class="sep">/</span> <strong>${ex.cyrillic}</strong>
+                        </div>
+                        <div>${ex.english}</div>
+                    </div>
+                `;
+                examplesGrid.appendChild(card);
+            });
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.trim().toLowerCase();
+            if (!term) {
+                renderColors(colorsData);
+                return;
+            }
+
+            const filtered = colorsData.filter(c =>
+                c.latin.toLowerCase().includes(term) ||
+                c.cyrillic.toLowerCase().includes(term) ||
+                c.english.toLowerCase().includes(term)
+            );
+            renderColors(filtered);
+        });
+
+        resetBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            renderColors(colorsData);
+            searchInput.focus();
+        });
+
+        /**
+         * Práctica Interactiva de concordancia de género y vocabulario de colores
+         * con salto automático de foco mediante la tecla Enter (keydown)
+         */
+        const practiceExercises = [
+            {
+                prompt: "🔴 _______ auto (red car — muški rod)",
+                answer: "crven",
+                display: "crven (црвен)"
+            },
+            {
+                prompt: "🔵 _______ kuća (blue house — ženski rod)",
+                answer: "plava",
+                display: "plava (плава)"
+            },
+            {
+                prompt: "🟢 _______ drvo (green tree — srednji rod)",
+                answer: "zeleno",
+                display: "zeleno (зелено)"
+            },
+            {
+                prompt: "🟡 _______ majica (yellow T-shirt — ženski rod)",
+                answer: "žuta",
+                display: "žuta (жута)"
+            },
+            {
+                prompt: "⬜ _______ stolica (white chair — ženski rod)",
+                answer: "bela",
+                display: "bela (бела)"
+            },
+            {
+                prompt: "🩷 _______ haljina (pink dress — invariable)",
+                answer: "roze",
+                display: "roze (розе)"
+            }
+        ];
+
+        const practiceGrid = document.getElementById('practiceGrid');
+        const resetPracticeBtn = document.getElementById('resetPracticeBtn');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+
+        function buildPractice() {
+            practiceGrid.innerHTML = '';
+
+            practiceExercises.forEach(item => {
+                const box = document.createElement('div');
+                box.className = 'practice-item';
+
+                const header = document.createElement('div');
+                header.className = 'practice-header';
+                header.innerHTML = `<strong>${item.prompt}</strong>`;
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.className = 'practice-field';
+                input.placeholder = 'Escribe el color en serbio latino y pulsa Enter';
+                input.dataset.answer = item.answer.toLowerCase();
+                input.dataset.display = item.display;
+                input.setAttribute('aria-label', item.prompt);
+
+                const feedback = document.createElement('div');
+                feedback.className = 'practice-feedback';
+
+                input.addEventListener('input', () => {
+                    validateField(input, feedback);
+                    updateScore();
+                });
+
+                // Salto automático de cursor (focus) mediante keydown (tecla Enter)
+                input.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        validateField(input, feedback);
+                        updateScore();
+
+                        const fields = Array.from(document.querySelectorAll('.practice-field'));
+                        const idx = fields.indexOf(event.target);
+                        if (idx !== -1 && idx < fields.length - 1) {
+                            fields[idx + 1].focus();
+                        } else if (idx === fields.length - 1) {
+                            fields[0].focus();
+                        }
+                    }
+                });
+
+                box.appendChild(header);
+                box.appendChild(input);
+                box.appendChild(feedback);
+                practiceGrid.appendChild(box);
+            });
+
+            updateScore();
+        }
+
+        function validateField(input, feedback) {
+            const val = input.value.trim().toLowerCase();
+            const expected = input.dataset.answer;
+            const display = input.dataset.display;
+
+            if (!val) {
+                feedback.textContent = '';
+                feedback.className = 'practice-feedback';
+                input.dataset.valid = 'false';
+                return;
+            }
+
+            if (val === expected) {
+                feedback.innerHTML = `Correcto: <strong>${display}</strong>`;
+                feedback.className = 'practice-feedback ok';
+                input.dataset.valid = 'true';
+            } else {
+                feedback.innerHTML = `Sigue intentando (Respuesta: ${display})`;
+                feedback.className = 'practice-feedback';
+                input.dataset.valid = 'false';
+            }
+        }
+
+        function updateScore() {
+            const fields = Array.from(document.querySelectorAll('.practice-field'));
+            const okCount = fields.filter(f => f.dataset.valid === 'true').length;
+            scoreDisplay.textContent = `Aciertos: ${okCount} / ${fields.length}`;
+        }
+
+        resetPracticeBtn.addEventListener('click', () => {
+            buildPractice();
+            const first = document.querySelector('.practice-field');
+            if (first) first.focus();
+        });
+
+        // ==========================================
+        // NUEVAS ACTIVIDADES (Vežba 1 a Vežba 5)
+        // ==========================================
+
+        const v1Data = [
+            { prompt: "red", answer: "crven" },
+            { prompt: "blue", answer: "plav" },
+            { prompt: "green", answer: "zelen" },
+            { prompt: "yellow", answer: "žut" },
+            { prompt: "black", answer: "crn" },
+            { prompt: "white", answer: "beo" },
+            { prompt: "grey", answer: "siv" },
+            { prompt: "orange", answer: "narandžast" },
+            { prompt: "purple", answer: "ljubičast" },
+            { prompt: "pink", answer: "roze" }
+        ];
+
+        const v2Data = [
+            { prompt: "________ auto. (crven / crvena / crveno)", options: ["crven", "crvena", "crveno"], answer: "crven" },
+            { prompt: "________ kuća. (plav / plava / plavo)", options: ["plav", "plava", "plavo"], answer: "plava" },
+            { prompt: "________ more. (zelen / zelena / zeleno)", options: ["zelen", "zelena", "zeleno"], answer: "zeleno" },
+            { prompt: "________ telefon. (crn / crna / crno)", options: ["crn", "crna", "crno"], answer: "crn" },
+            { prompt: "________ haljina. (bela / beo / belo)", options: ["bela", "beo", "belo"], answer: "bela" }
+        ];
+
+        const v3Data = [
+            { prompt: "5 =", answer: "pet" },
+            { prompt: "8 =", answer: "osam" },
+            { prompt: "12 =", answer: "dvanaest" },
+            { prompt: "15 =", answer: "petnaest" },
+            { prompt: "20 =", answer: "dvadeset" },
+            { prompt: "24 =", answer: "dvadeset četiri" },
+            { prompt: "31 =", answer: "trideset jedan" },
+            { prompt: "45 =", answer: "četrdeset pet" },
+            { prompt: "67 =", answer: "šezdeset sedam" },
+            { prompt: "99 =", answer: "devedeset devet" }
+        ];
+
+        const v4Data = [
+            { prompt: "Imam dva ________ auta. (crven)", answer: "crvena" },
+            { prompt: "Vidim tri ________ kuće. (plav)", answer: "plave" },
+            { prompt: "Imam pet ________ majica. (zelen)", answer: "zelenih" },
+            { prompt: "U sobi su četiri ________ stolice. (beo)", answer: "bele" },
+            { prompt: "Na stolu su dve ________ jabuke. (crven)", answer: "crvene" },
+            { prompt: "Imam tri ________ telefona. (crn)", answer: "crna" },
+            { prompt: "U garaži su dva ________ automobila. (bel)", answer: "bela" },
+            { prompt: "U parku su pet ________ lopti. (žut)", answer: "žutih" }
+        ];
+
+        const v5Data = [
+            { prompt: "I have one blue car.", answer: "imam jedan plavi auto" },
+            { prompt: "She has two red bags.", answer: "ona ima dve crvene torbe" },
+            { prompt: "We have three black phones.", answer: "mi imamo tri crna telefona" },
+            { prompt: "There are four green trees.", answer: "tamo su četiri zelena drveta" },
+            { prompt: "I see five white houses.", answer: "ja vidim pet belih kuća" },
+            { prompt: "There are ten children in the park.", answer: "u parku je deset dece" },
+            { prompt: "He has two yellow shirts.", answer: "on ima dve žute majice" },
+            { prompt: "There are three blue cars in front of the house.", answer: "ispred kuće su tri plava auta" }
+        ];
+
+        function buildCustomExercise(containerId, scoreId, resetBtnId, items, groupClass, isMultipleChoice = false) {
+            const container = document.getElementById(containerId);
+            const scoreEl = document.getElementById(scoreId);
+            const resetBtn = document.getElementById(resetBtnId);
+
+            function render() {
+                container.innerHTML = '';
+                items.forEach((item) => {
+                    const box = document.createElement('div');
+                    box.className = 'practice-item';
+
+                    const header = document.createElement('div');
+                    header.className = 'practice-header';
+                    header.innerHTML = `<strong>${item.prompt}</strong>`;
+
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.className = `${groupClass} practice-field`;
+                    input.placeholder = isMultipleChoice ? 'Escribe a), b) o c)' : 'Escribe tu respuesta y pulsa Enter';
+                    input.dataset.answer = item.answer.toLowerCase();
+                    input.setAttribute('aria-label', item.prompt);
+
+                    const feedback = document.createElement('div');
+                    feedback.className = 'practice-feedback';
+
+                    function validate() {
+                        const val = input.value.trim().toLowerCase();
+                        if (!val) {
+                            feedback.textContent = '';
+                            feedback.className = 'practice-feedback';
+                            input.dataset.valid = 'false';
+                            return;
+                        }
+
+                        if (val === item.answer.toLowerCase()) {
+                            feedback.innerHTML = `Correcto: <strong>${item.answer}</strong>`;
+                            feedback.className = 'practice-feedback ok';
+                            input.dataset.valid = 'true';
+                        } else {
+                            feedback.innerHTML = `Sigue intentando (Respuesta: ${item.answer})`;
+                            feedback.className = 'practice-feedback';
+                            input.dataset.valid = 'false';
+                        }
+                    }
+
+                    input.addEventListener('input', () => {
+                        validate();
+                        updateScore();
+                    });
+
+                    // Salto automático con tecla Enter
+                    input.addEventListener('keydown', (event) => {
+                        if (event.key === 'Enter') {
+                            event.preventDefault();
+                            validate();
+                            updateScore();
+
+                            const fields = Array.from(document.querySelectorAll(`.${groupClass}`));
+                            const pos = fields.indexOf(event.target);
+                            if (pos !== -1 && pos < fields.length - 1) {
+                                fields[pos + 1].focus();
+                            } else if (pos === fields.length - 1) {
+                                fields[0].focus();
+                            }
+                        }
+                    });
+
+                    box.appendChild(header);
+                    box.appendChild(input);
+                    box.appendChild(feedback);
+                    container.appendChild(box);
+                });
+                updateScore();
+            }
+
+            function updateScore() {
+                const fields = Array.from(document.querySelectorAll(`.${groupClass}`));
+                const okCount = fields.filter(f => f.dataset.valid === 'true').length;
+                scoreEl.textContent = `Aciertos: ${okCount} / ${fields.length}`;
+            }
+
+            resetBtn.addEventListener('click', () => {
+                render();
+                const first = document.querySelector(`.${groupClass}`);
+                if (first) first.focus();
+            });
+
+            render();
+        }
+
+        // Inicialización de las nuevas actividades
+        buildCustomExercise('v1Grid', 'scoreV1', 'resetV1', v1Data, 'field-v1');
+        buildCustomExercise('v2Grid', 'scoreV2', 'resetV2', v2Data, 'field-v2', true);
+        buildCustomExercise('v3Grid', 'scoreV3', 'resetV3', v3Data, 'field-v3');
+        buildCustomExercise('v4Grid', 'scoreV4', 'resetV4', v4Data, 'field-v4');
+        buildCustomExercise('v5Grid', 'scoreV5', 'resetV5', v5Data, 'field-v5');
+
+        // Inicialización general
+        renderColors(colorsData);
+        renderExamples();
+        buildPractice();
+    </script>
+</body>
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>-----Reči----- | čitanje/pisanje/izgovor/</title>
+    <!-- Enlace relativo con control de caché ?v=1.0 según Guía de Estilo -->
+    <!-- <link rel="stylesheet" href="assets/styles.css?v=1.0"> -->
+    <style>
+        /*
+         * IDENTIDAD CROMÁTICA EXCLUSIVA
+         * Primario (Títulos y Acentos): #FF79AC (Flamingo Pink)
+         * Secundario (Fondo de Botones/Resaltado): #FFB3D1 (Rosa Claro)
+         * Texto Principal: #121118 (Eerie Black)
+         * Fondo de Página: #FFFFFF (Blanco puro)
+         * Líneas Divisoras: #E0E0E0 (Gris claro)
+         */
+        :root {
+            --color-primary: #FF79AC;
+            --color-secondary: #FFB3D1;
+            --color-text: #121118;
+            --color-bg: #FFFFFF;
+            --color-border: #E0E0E0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, sans-serif;
+            font-weight: 500;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            padding: 1.75rem 1.25rem;
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+
+        /* Títulos (H1) */
+        h1 {
+            font-size: 2.35rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.01em;
+        }
+
+        /* Subtítulos (H2) */
+        h2 {
+            font-size: 1.55rem;
+            font-weight: 600;
+            color: var(--color-text);
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Cuerpo de Texto Justificado */
+        p {
+            font-size: 1.05rem;
+            text-align: justify;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        /* Barra de búsqueda y estado de audio */
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1.25rem;
+            padding: 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            background-color: var(--color-bg);
+        }
+
+        .search-wrapper {
+            flex: 1 1 300px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            font-family: inherit;
+            font-size: 1rem;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--color-primary);
+        }
+
+        .btn {
+            background-color: var(--color-secondary);
+            color: var(--color-text);
+            border: 1px solid var(--color-primary);
+            padding: 0.65rem 1.15rem;
+            font-family: inherit;
+            font-size: 0.98rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+        }
+
+        .btn:hover {
+            background-color: var(--color-primary);
+            color: var(--color-bg);
+        }
+
+        /* Cuadrícula de Dos Vocabularios por Línea */
+        .vocab-section {
+            margin-bottom: 3rem;
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.15rem;
+        }
+
+        .vocab-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1.1rem 1.25rem;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            background-color: var(--color-bg);
+            transition: border-color 0.2s ease;
+        }
+
+        .vocab-card:hover {
+            border-color: var(--color-primary);
+        }
+
+        .vocab-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            flex: 1;
+        }
+
+        .vocab-scripts {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.5rem;
+            font-size: 1.15rem;
+        }
+
+        .word-latin {
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        .script-sep {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        .word-cyrillic {
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        .word-english {
+            font-size: 1rem;
+            color: var(--color-text);
+        }
+
+        .word-note {
+            font-size: 0.9rem;
+            color: var(--color-text);
+            padding-top: 0.2rem;
+            border-top: 1px solid var(--color-border);
+            margin-top: 0.25rem;
+        }
+
+        /* Sección de Práctica Interactiva con navegación Enter */
+        .practice-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.15rem;
+            margin-top: 1.25rem;
+        }
+
+        .practice-item {
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.15rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .practice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 0.5rem;
+        }
+
+        .practice-feedback {
+            font-size: 0.92rem;
+            min-height: 1.4rem;
+            font-weight: 600;
+        }
+
+        .practice-feedback.ok {
+            color: var(--color-primary);
+        }
+
+        .practice-controls {
+            margin-top: 1.25rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .score-pill {
+            padding: 0.65rem 1.15rem;
+            border-radius: 8px;
+            border: 1px solid var(--color-primary);
+            background-color: var(--color-secondary);
+            font-weight: 700;
+        }
+
+        footer {
+            border-top: 1px solid var(--color-border);
+            padding-top: 1.25rem;
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        /* Responsividad para pantallas móviles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .vocab-grid,
+            .practice-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>-----Reči-----</h1>
+        <h2>čitanje/pisanje/izgovor/</h2>
+        <p>
+            Explora este glosario esencial de vocabulario en serbio diseñado para practicar la <strong>lectura (čitanje)</strong>, la <strong>escritura (pisanje)</strong> y la <strong>pronunciación (izgovor)</strong>. Cada entrada presenta la palabra en <strong>alfabeto latino</strong> y <strong>alfabeto cirílico</strong> junto con su significado en <strong>inglés</strong> y notas gramaticales clave, organizadas en dos vocabularios por línea.
+        </p>
+
+        <div class="toolbar">
+            <div class="search-wrapper">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Buscar en latín, cirílico o inglés (ej. Kuća, Кућа, House)..." 
+                    aria-label="Buscar vocabulario"
+                >
+            </div>
+            <button type="button" class="btn" id="resetBtn">Mostrar Todo</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Lista de Vocabulario (2 por línea) -->
+        <section class="vocab-section" aria-label="Vocabulario serbio">
+            <div id="vocabGrid" class="vocab-grid">
+                <!-- Tarjetas generadas dinámicamente -->
+            </div>
+        </section>
+
+        <!-- Actividad Interactiva con salto automático de foco mediante Enter -->
+        <section class="practice-section" aria-label="Práctica de escritura y lectura">
+            <h2>Práctica de Escritura (Pisanje)</h2>
+            <p>
+                Traduce al <strong>serbio latino</strong> las siguientes palabras mostradas en cirílico e inglés. Presiona la tecla <strong>Enter</strong> en cada campo para validar y mover el cursor automáticamente al siguiente ejercicio.
+            </p>
+
+            <div id="practiceGrid" class="practice-grid">
+                <!-- Campos generados dinámicamente -->
+            </div>
+
+            <div class="practice-controls">
+                <button type="button" class="btn" id="refreshPracticeBtn">Nuevas Palabras</button>
+                <div id="scoreDisplay" class="score-pill">Aciertos: 0 / 6</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p style="text-align: center;">
+            <strong>-----Reči-----</strong> &mdash; čitanje / pisanje / izgovor (Latin Serbian / Cirílico / English)
+        </p>
+    </footer>
+
+    <script>
+        /**
+         * Vocabulario completo proporcionado por el usuario con equivalentes
+         * en Latín, Cirílico, Inglés y notas aclaratorias.
+         */
+        const vocabularyList = [
+            { latin: "Kuća", cyrillic: "Кућа", english: "HOUSE", note: "" },
+            { latin: "Sunce", cyrillic: "Сунце", english: "SUN", note: "" },
+            { latin: "Reka", cyrillic: "Река", english: "RIVER", note: "" },
+            { latin: "Oblak", cyrillic: "Облак", english: "CLOUD", note: "" },
+            { latin: "Planina", cyrillic: "Планина", english: "MOUNTAIN", note: "" },
+            { latin: "More", cyrillic: "Море", english: "SEA", note: "" },
+            { latin: "Ptica", cyrillic: "Птица", english: "BIRD", note: "" },
+            { latin: "Mačka / Mačak", cyrillic: "Мачка / Мачак", english: "CAT", note: "Feminine: Mačka &bull; Masculine: Mačak" },
+            { latin: "Pas", cyrillic: "Пас", english: "DOG", note: "" },
+            { latin: "Cvet / Cveće", cyrillic: "Цвет / Цвеће", english: "FLOWER / FLOWERS", note: "Singular: Cvet &bull; Plural: Cveće" },
+            { latin: "Voće", cyrillic: "Воће", english: "FRUIT", note: "Singular and plural collective form" },
+            { latin: "Voda", cyrillic: "Вода", english: "WATER", note: "" },
+            { latin: "Vatra", cyrillic: "Ватра", english: "FIRE", note: "" },
+            { latin: "Zemlja", cyrillic: "Земља", english: "EARTH", note: "Capital Z (Zemlja): Planet Earth" },
+            { latin: "zemlja", cyrillic: "земља", english: "SOIL / LAND", note: "Small z (zemlja): Soil, ground or country" },
+            { latin: "Mesec / mesec", cyrillic: "Месец / месец", english: "MOON / MONTH", note: "Capital M (Mesec): Moon &bull; Small m (mesec): Month (mes)" },
+            { latin: "Zvezda", cyrillic: "Звезда", english: "STAR", note: "" },
+            { latin: "Vetar", cyrillic: "Ветар", english: "WIND", note: "" },
+            { latin: "Sneg", cyrillic: "Снег", english: "SNOW", note: "" },
+            { latin: "Pesma", cyrillic: "Песма", english: "SONG", note: "" },
+            { latin: "Film", cyrillic: "Филм", english: "MOVIE", note: "" },
+            { latin: "Knjiga", cyrillic: "Књига", english: "BOOK", note: "" },
+            { latin: "Škola", cyrillic: "Школа", english: "SCHOOL", note: "" },
+            { latin: "Vožnja", cyrillic: "Вожња", english: "DRIVING", note: "" },
+            { latin: "Putovanje", cyrillic: "Путовање", english: "TRAVEL", note: "" },
+            { latin: "Povrće", cyrillic: "Поврће", english: "VEGETABLES", note: "Note: Voće is Fruit; Povrće is Vegetables" },
+            { latin: "Hleb", cyrillic: "Хлеб", english: "BREAD", note: "" },
+            { latin: "Meso", cyrillic: "Месо", english: "MEAT", note: "" },
+            { latin: "Sir", cyrillic: "Сир", english: "CHEESE", note: "" },
+            { latin: "Kralj", cyrillic: "Краљ", english: "KING", note: "" },
+            { latin: "Kraljica", cyrillic: "Краљица", english: "QUEEN", note: "" },
+            { latin: "Kafa", cyrillic: "Кафа", english: "COFFEE", note: "" },
+            { latin: "Čaj", cyrillic: "Чај", english: "TEA", note: "" },
+            { latin: "Vino", cyrillic: "Вино", english: "WINE", note: "" },
+            { latin: "Pivo", cyrillic: "Пиво", english: "BEER", note: "" },
+            { latin: "Jagoda / Jagode", cyrillic: "Јагода / Јагоде", english: "STRAWBERRY / STRAWBERRIES", note: "Singular: Jagoda &bull; Plural: Jagode" },
+            { latin: "Jabuka / Jabuke", cyrillic: "Јабука / Јабуке", english: "APPLE / APPLES", note: "Singular: Jabuka &bull; Plural: Jabuke" },
+            { latin: "Kruška / Kruške", cyrillic: "Крушка / Крушке", english: "PEAR / PEARS", note: "Singular: Kruška &bull; Plural: Kruške" },
+            { latin: "Paradajz", cyrillic: "Парадајз", english: "TOMATO", note: "" },
+            { latin: "Plivanje", cyrillic: "Пливање", english: "SWIMMING", note: "" },
+            { latin: "Trčanje", cyrillic: "Трчање", english: "RUNNING", note: "" },
+            { latin: "Smeh", cyrillic: "Смех", english: "LAUGH", note: "" },
+            { latin: "Ljubav", cyrillic: "Љубав", english: "LOVE", note: "" },
+            { latin: "Sreća", cyrillic: "Срећа", english: "LUCK", note: "" },
+            { latin: "Tuga", cyrillic: "Туга", english: "SADNESS", note: "" },
+            { latin: "San", cyrillic: "Сан", english: "DREAM", note: "" },
+            { latin: "Grad / Beograd", cyrillic: "Град / Београд", english: "CITY / BELGRADE (White city)", note: "Capital of Serbia: Beograd (Beo = white, grad = city)" },
+            { latin: "Selo", cyrillic: "Село", english: "VILLAGE", note: "" },
+            { latin: "Kivi", cyrillic: "Киви", english: "KIWI", note: "" },
+            { latin: "Jaje / Jaja", cyrillic: "Јаје / Јаја", english: "EGG / EGGS", note: "Singular: Jaje &bull; Plural: Jaja" }
+        ];
+
+        const vocabGrid = document.getElementById('vocabGrid');
+        const searchInput = document.getElementById('searchInput');
+        const resetBtn = document.getElementById('resetBtn');
+
+        /**
+         * Renderiza las tarjetas de vocabulario (2 columnas en escritorio/tablet)
+         */
+        function renderVocabulary(items) {
+            vocabGrid.innerHTML = '';
+
+            if (items.length === 0) {
+                const empty = document.createElement('p');
+                empty.textContent = 'No se encontraron palabras que coincidan con tu búsqueda.';
+                vocabGrid.appendChild(empty);
+                return;
+            }
+
+            items.forEach(item => {
+                const card = document.createElement('article');
+                card.className = 'vocab-card';
+
+                const content = document.createElement('div');
+                content.className = 'vocab-content';
+
+                const scriptsLine = document.createElement('div');
+                scriptsLine.className = 'vocab-scripts';
+                scriptsLine.innerHTML = `
+                    <strong class="word-latin">${item.latin}</strong>
+                    <span class="script-sep">/</span>
+                    <strong class="word-cyrillic">${item.cyrillic}</strong>
+                    <span class="script-sep">&mdash;</span>
+                    <span class="word-english"><strong>${item.english}</strong></span>
+                `;
+
+                content.appendChild(scriptsLine);
+
+                if (item.note) {
+                    const noteLine = document.createElement('div');
+                    noteLine.className = 'word-note';
+                    noteLine.innerHTML = item.note;
+                    content.appendChild(noteLine);
+                }
+
+                card.appendChild(content);
+                vocabGrid.appendChild(card);
+            });
+        }
+
+        // Búsqueda instantánea
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.trim().toLowerCase();
+            if (!query) {
+                renderVocabulary(vocabularyList);
+                return;
+            }
+
+            const filtered = vocabularyList.filter(item =>
+                item.latin.toLowerCase().includes(query) ||
+                item.cyrillic.toLowerCase().includes(query) ||
+                item.english.toLowerCase().includes(query) ||
+                (item.note && item.note.toLowerCase().includes(query))
+            );
+
+            renderVocabulary(filtered);
+        });
+
+        resetBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            renderVocabulary(vocabularyList);
+            searchInput.focus();
+        });
+
+        /**
+         * Práctica Interactiva con salto automático de cursor (focus)
+         * mediante keydown (tecla Enter) entre los campos de la actividad.
+         */
+        const practiceGrid = document.getElementById('practiceGrid');
+        const refreshPracticeBtn = document.getElementById('refreshPracticeBtn');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+
+        function buildPractice() {
+            const simpleWords = vocabularyList.filter(item => !item.latin.includes('/'));
+            const selected = [...simpleWords].sort(() => 0.5 - Math.random()).slice(0, 6);
+
+            practiceGrid.innerHTML = '';
+
+            selected.forEach((item, idx) => {
+                const box = document.createElement('div');
+                box.className = 'practice-item';
+
+                const header = document.createElement('div');
+                header.className = 'practice-header';
+                header.innerHTML = `
+                    <span><strong>${item.cyrillic}</strong> (${item.english})</span>
+                `;
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.className = 'practice-field';
+                input.placeholder = 'Escribe en serbio latino y pulsa Enter';
+                input.dataset.answer = item.latin.toLowerCase();
+                input.dataset.display = item.latin;
+                input.setAttribute('aria-label', `Traducción latina de ${item.cyrillic}`);
+
+                const feedback = document.createElement('div');
+                feedback.className = 'practice-feedback';
+
+                input.addEventListener('input', () => {
+                    checkField(input, feedback);
+                    refreshScore();
+                });
+
+                // Salto de cursor automático (focus) con la tecla Enter
+                input.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        checkField(input, feedback);
+                        refreshScore();
+
+                        const fields = Array.from(document.querySelectorAll('.practice-field'));
+                        const pos = fields.indexOf(event.target);
+                        if (pos !== -1 && pos < fields.length - 1) {
+                            fields[pos + 1].focus();
+                        } else if (pos === fields.length - 1) {
+                            fields[0].focus();
+                        }
+                    }
+                });
+
+                box.appendChild(header);
+                box.appendChild(input);
+                box.appendChild(feedback);
+                practiceGrid.appendChild(box);
+            });
+
+            refreshScore();
+        }
+
+        function checkField(input, feedback) {
+            const val = input.value.trim().toLowerCase();
+            const expected = input.dataset.answer;
+            const display = input.dataset.display;
+
+            if (!val) {
+                feedback.textContent = '';
+                feedback.className = 'practice-feedback';
+                input.dataset.valid = 'false';
+                return;
+            }
+
+            if (val === expected) {
+                feedback.innerHTML = `Correcto: <strong>${display}</strong>`;
+                feedback.className = 'practice-feedback ok';
+                input.dataset.valid = 'true';
+            } else {
+                feedback.innerHTML = `Sigue intentando (Respuesta: ${display})`;
+                feedback.className = 'practice-feedback';
+                input.dataset.valid = 'false';
+            }
+        }
+
+        function refreshScore() {
+            const fields = Array.from(document.querySelectorAll('.practice-field'));
+            const okCount = fields.filter(f => f.dataset.valid === 'true').length;
+            scoreDisplay.textContent = `Aciertos: ${okCount} / ${fields.length}`;
+        }
+
+        refreshPracticeBtn.addEventListener('click', () => {
+            buildPractice();
+            const first = document.querySelector('.practice-field');
+            if (first) first.focus();
+        });
+
+        // Inicialización
+        renderVocabulary(vocabularyList);
+        buildPractice();
+    </script>
+</body>
+</html>

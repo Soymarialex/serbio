@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Abecedario - Latin Serbian / Cirilica / English</title>
+    <!-- Enlace relativo simulado para cumplimiento de regla de caché ?v=1.0 -->
+    <!-- <link rel="stylesheet" href="assets/styles.css?v=1.0"> -->
+    <style>
+        /* 
+         * GUÍA DE ESTILO VISUAL - IDENTIDAD CROMÁTICA EXCLUSIVA
+         * Primario: #FF79AC (Flamingo Pink)
+         * Secundario: #FFB3D1 (Rosa Claro)
+         * Texto Principal: #121118 (Eerie Black)
+         * Fondo: #FFFFFF (Blanco puro)
+         * Líneas Divisoras: #E0E0E0 (Gris claro)
+         */
+
+        :root {
+            --color-primary: #FF79AC;
+            --color-secondary: #FFB3D1;
+            --color-text: #121118;
+            --color-bg: #FFFFFF;
+            --color-border: #E0E0E0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 500;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            padding: 1.5rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Títulos (H1) */
+        h1 {
+            font-size: 2.35rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+            text-transform: lowercase;
+        }
+
+        h1::first-letter {
+            text-transform: uppercase;
+        }
+
+        /* Subtítulos (H2) */
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--color-text);
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Cuerpo de Texto Justificado */
+        p {
+            font-size: 1.05rem;
+            text-align: justify;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* Encabezado y Controles */
+        header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .controls-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            background-color: var(--color-bg);
+        }
+
+        .search-group {
+            flex: 1 1 280px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-family: inherit;
+            font-size: 1rem;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--color-primary);
+            background-color: var(--color-bg);
+        }
+
+        .btn {
+            background-color: var(--color-secondary);
+            color: var(--color-text);
+            border: 1px solid var(--color-primary);
+            padding: 0.75rem 1.25rem;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover, .btn.active {
+            background-color: var(--color-primary);
+            color: var(--color-bg);
+        }
+
+        /* Sección del Alfabeto (Grid de Tarjetas / Filas Estructuradas) */
+        .alphabet-section {
+            margin-bottom: 3.5rem;
+        }
+
+        .alphabet-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .letter-row {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 1.25rem;
+            padding: 1.25rem;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            background-color: var(--color-bg);
+            transition: border-color 0.2s ease;
+        }
+
+        .letter-row:hover {
+            border-color: var(--color-primary);
+        }
+
+        /* Lado Izquierdo: Serbio Latino */
+        .side-latin {
+            text-align: left;
+            padding-right: 1rem;
+            border-right: 1px solid var(--color-border);
+        }
+
+        /* Centro: Letra en Latín y Cirílico */
+        .center-letters {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 130px;
+            padding: 0.75rem 1rem;
+            background-color: var(--color-secondary);
+            border: 2px solid var(--color-primary);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .letter-latin {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--color-text);
+            line-height: 1.2;
+        }
+
+        .letter-divider {
+            width: 60%;
+            height: 1px;
+            background-color: var(--color-primary);
+            margin: 0.35rem 0;
+        }
+
+        .letter-cyrillic {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--color-text);
+            line-height: 1.2;
+        }
+
+        .script-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-primary);
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        /* Lado Derecho: Serbio Cirílico */
+        .side-cyrillic {
+            text-align: left;
+            padding-left: 1rem;
+            border-left: 1px solid var(--color-border);
+        }
+
+        .example-item {
+            margin-bottom: 0.4rem;
+        }
+
+        .example-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .serbian-word {
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        .english-meaning {
+            color: var(--color-text);
+        }
+
+        .highlight-accent {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        /* Sección de Práctica Interactiva con Salto de Cursor (Enter) */
+        .practice-section {
+            padding-top: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .practice-card {
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .practice-prompt {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 0.5rem;
+        }
+
+        .practice-badge {
+            background-color: var(--color-secondary);
+            color: var(--color-text);
+            padding: 0.25rem 0.75rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.15rem;
+            border: 1px solid var(--color-primary);
+        }
+
+        .feedback-msg {
+            font-size: 0.9rem;
+            font-weight: 600;
+            min-height: 1.4rem;
+        }
+
+        .feedback-correct {
+            color: var(--color-primary);
+        }
+
+        .practice-actions {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .score-display {
+            padding: 0.75rem 1.25rem;
+            border: 1px solid var(--color-primary);
+            border-radius: 8px;
+            background-color: var(--color-secondary);
+            font-weight: 700;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--color-border);
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        /* Adaptabilidad Móvil */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .letter-row {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .side-latin {
+                border-right: none;
+                border-bottom: 1px solid var(--color-border);
+                padding-right: 0;
+                padding-bottom: 0.75rem;
+                text-align: center;
+                order: 2;
+            }
+
+            .center-letters {
+                order: 1;
+                flex-direction: row;
+                gap: 1rem;
+                width: 100%;
+            }
+
+            .letter-divider {
+                width: 2px;
+                height: 1.75rem;
+                margin: 0;
+            }
+
+            .side-cyrillic {
+                border-left: none;
+                padding-left: 0;
+                text-align: center;
+                order: 3;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>el abecedario</h1>
+        <h2>Latin Serbian / Cirilica / English</h2>
+        <p>
+            El idioma serbio destaca en Europa por su digrafía sincrónica oficial, lo que significa que utiliza tanto el <strong>alfabeto latino (Gajica)</strong> como el <strong>alfabeto cirílico (Vukovica)</strong> con una correspondencia exacta de uno a uno. Cada una de sus treinta letras representa un único sonido constante. A continuación encontrarás el abecedario completo dispuesto con los ejemplos en <strong>serbio latino</strong> a la izquierda, las letras centrales en ambos sistemas, y sus equivalentes en <strong>serbio cirílico</strong> a la derecha, acompañados de su traducción al <strong>inglés</strong>.
+        </p>
+
+        <div class="controls-bar">
+            <div class="search-group">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Filtrar por letra, palabra en serbio o traducción en inglés..." 
+                    aria-label="Filtrar abecedario"
+                >
+            </div>
+            <button type="button" class="btn" id="clearFilterBtn">Mostrar Todas (30)</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección Principal: Abecedario Completo -->
+        <section class="alphabet-section" aria-label="Tabla comparativa del abecedario serbio">
+            <div id="alphabetContainer" class="alphabet-grid">
+                <!-- Generado dinámicamente mediante JavaScript limpio -->
+            </div>
+        </section>
+
+        <!-- Sección de Práctica Interactiva con navegación Enter -->
+        <section class="practice-section" aria-label="Práctica de transliteración">
+            <h2>Práctica Interactiva: Latín a Cirílico</h2>
+            <p>
+                Escribe la letra o dígrafo equivalente en <strong>cirílico serbio</strong> para cada letra latina mostrada. Presiona la tecla <strong>Enter</strong> en cada campo para saltar automáticamente al siguiente ejercicio y verificar tu progreso.
+            </p>
+
+            <div id="practiceContainer" class="practice-grid">
+                <!-- Campos generados dinámicamente -->
+            </div>
+
+            <div class="practice-actions">
+                <button type="button" class="btn" id="newPracticeBtn">Nuevas Letras de Práctica</button>
+                <div id="scoreBox" class="score-display">Aciertos: 0 / 6</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p style="text-align: center;">
+            <strong>El Abecedario</strong> &mdash; Guía bilingüe y bialfabética: <strong>Latin Serbian / Cirilica / English</strong>.
+        </p>
+    </footer>
+
+    <script>
+        /**
+         * Base de datos completa de las 30 letras del alfabeto serbio.
+         * Incluye los ejemplos exactos solicitados por el usuario y completa toda la lista
+         * con ejemplos en Latín, Cirílico y sus traducciones al Inglés.
+         */
+        const serbianAlphabetData = [
+            {
+                latin: "A a",
+                cyrillic: "А а",
+                latinExamples: [
+                    { word: "Ana", meaning: "Ana (proper name)" },
+                    { word: "auto(mobil)", meaning: "Car" }
+                ],
+                cyrillicExamples: [
+                    { word: "Ана", meaning: "Ana (proper name)" },
+                    { word: "ауто(мобил)", meaning: "Car" }
+                ]
+            },
+            {
+                latin: "B b",
+                cyrillic: "Б б",
+                latinExamples: [
+                    { word: "Bojan", meaning: "Bojan (proper name)" },
+                    { word: "brdo", meaning: "Hill" },
+                    { word: "boja", meaning: "Color" }
+                ],
+                cyrillicExamples: [
+                    { word: "Бојан", meaning: "Bojan (proper name)" },
+                    { word: "брдо", meaning: "Hill" },
+                    { word: "боја", meaning: "Color" }
+                ]
+            },
+            {
+                latin: "C c",
+                cyrillic: "Ц ц",
+                latinExamples: [
+                    { word: "Car", meaning: "Tzar, king" },
+                    { word: "cvet", meaning: "Flower" }
+                ],
+                cyrillicExamples: [
+                    { word: "Цар", meaning: "Tzar, king" },
+                    { word: "цвет", meaning: "Flower" }
+                ]
+            },
+            {
+                latin: "Č č",
+                cyrillic: "Ч ч",
+                latinExamples: [
+                    { word: "Čovek", meaning: "Human, Man" },
+                    { word: "čaj", meaning: "Tea" }
+                ],
+                cyrillicExamples: [
+                    { word: "Човек", meaning: "Human, Man" },
+                    { word: "чај", meaning: "Tea" }
+                ]
+            },
+            {
+                latin: "Ć ć",
+                cyrillic: "Ћ ћ",
+                latinExamples: [
+                    { word: "Ćurka", meaning: "Turkey" },
+                    { word: "ćup", meaning: "Jar, pot" }
+                ],
+                cyrillicExamples: [
+                    { word: "Ћурка", meaning: "Turkey" },
+                    { word: "ћуп", meaning: "Jar, pot" }
+                ]
+            },
+            {
+                latin: "D d",
+                cyrillic: "Д д",
+                latinExamples: [
+                    { word: "Dan", meaning: "Day" },
+                    { word: "drvo", meaning: "Tree, wood" }
+                ],
+                cyrillicExamples: [
+                    { word: "Дан", meaning: "Day" },
+                    { word: "дрво", meaning: "Tree, wood" }
+                ]
+            },
+            {
+                latin: "Dž dž",
+                cyrillic: "Џ џ",
+                latinExamples: [
+                    { word: "Džep", meaning: "Pocket" },
+                    { word: "džem", meaning: "Jam" }
+                ],
+                cyrillicExamples: [
+                    { word: "Џеп", meaning: "Pocket" },
+                    { word: "џем", meaning: "Jam" }
+                ]
+            },
+            {
+                latin: "Đ đ",
+                cyrillic: "Ђ ђ",
+                latinExamples: [
+                    { word: "Đak", meaning: "Pupil, student" },
+                    { word: "đevrek", meaning: "Bagel" }
+                ],
+                cyrillicExamples: [
+                    { word: "Ђак", meaning: "Pupil, student" },
+                    { word: "ђеврек", meaning: "Bagel" }
+                ]
+            },
+            {
+                latin: "E e",
+                cyrillic: "Е е",
+                latinExamples: [
+                    { word: "Ekran", meaning: "Screen" },
+                    { word: "evro", meaning: "Euro" }
+                ],
+                cyrillicExamples: [
+                    { word: "Екран", meaning: "Screen" },
+                    { word: "евро", meaning: "Euro" }
+                ]
+            },
+            {
+                latin: "F f",
+                cyrillic: "Ф ф",
+                latinExamples: [
+                    { word: "Film", meaning: "Movie, film" },
+                    { word: "fakultet", meaning: "Faculty, university" }
+                ],
+                cyrillicExamples: [
+                    { word: "Филм", meaning: "Movie, film" },
+                    { word: "факултет", meaning: "Faculty, university" }
+                ]
+            },
+            {
+                latin: "G g",
+                cyrillic: "Г г",
+                latinExamples: [
+                    { word: "Grad", meaning: "City, town" },
+                    { word: "glava", meaning: "Head" }
+                ],
+                cyrillicExamples: [
+                    { word: "Град", meaning: "City, town" },
+                    { word: "глава", meaning: "Head" }
+                ]
+            },
+            {
+                latin: "H h",
+                cyrillic: "Х х",
+                latinExamples: [
+                    { word: "Hleb", meaning: "Bread" },
+                    { word: "hvala", meaning: "Thank you" }
+                ],
+                cyrillicExamples: [
+                    { word: "Хлеб", meaning: "Bread" },
+                    { word: "хвала", meaning: "Thank you" }
+                ]
+            },
+            {
+                latin: "I i",
+                cyrillic: "И и",
+                latinExamples: [
+                    { word: "Ime", meaning: "Name" },
+                    { word: "istina", meaning: "Truth" }
+                ],
+                cyrillicExamples: [
+                    { word: "Име", meaning: "Name" },
+                    { word: "истина", meaning: "Truth" }
+                ]
+            },
+            {
+                latin: "J j",
+                cyrillic: "Ј ј",
+                latinExamples: [
+                    { word: "Jabuka", meaning: "Apple" },
+                    { word: "jezero", meaning: "Lake" }
+                ],
+                cyrillicExamples: [
+                    { word: "Јабука", meaning: "Apple" },
+                    { word: "језеро", meaning: "Lake" }
+                ]
+            },
+            {
+                latin: "K k",
+                cyrillic: "К к",
+                latinExamples: [
+                    { word: "Knjiga", meaning: "Book" },
+                    { word: "kuća", meaning: "House" }
+                ],
+                cyrillicExamples: [
+                    { word: "Књига", meaning: "Book" },
+                    { word: "кућа", meaning: "House" }
+                ]
+            },
+            {
+                latin: "L l",
+                cyrillic: "Л л",
+                latinExamples: [
+                    { word: "List", meaning: "Leaf, sheet" },
+                    { word: "lampa", meaning: "Lamp" }
+                ],
+                cyrillicExamples: [
+                    { word: "Лист", meaning: "Leaf, sheet" },
+                    { word: "лампа", meaning: "Lamp" }
+                ]
+            },
+            {
+                latin: "Lj lj",
+                cyrillic: "Љ љ",
+                latinExamples: [
+                    { word: "Ljubav", meaning: "Love" },
+                    { word: "ljudi", meaning: "People" }
+                ],
+                cyrillicExamples: [
+                    { word: "Љубав", meaning: "Love" },
+                    { word: "људи", meaning: "People" }
+                ]
+            },
+            {
+                latin: "M m",
+                cyrillic: "М м",
+                latinExamples: [
+                    { word: "Majka", meaning: "Mother" },
+                    { word: "more", meaning: "Sea" }
+                ],
+                cyrillicExamples: [
+                    { word: "Мајка", meaning: "Mother" },
+                    { word: "море", meaning: "Sea" }
+                ]
+            },
+            {
+                latin: "N n",
+                cyrillic: "Н н",
+                latinExamples: [
+                    { word: "Noć", meaning: "Night" },
+                    { word: "nebo", meaning: "Sky" }
+                ],
+                cyrillicExamples: [
+                    { word: "Ноћ", meaning: "Night" },
+                    { word: "небо", meaning: "Sky" }
+                ]
+            },
+            {
+                latin: "Nj nj",
+                cyrillic: "Њ њ",
+                latinExamples: [
+                    { word: "Njiva", meaning: "Field" },
+                    { word: "njuška", meaning: "Snout, muzzle" }
+                ],
+                cyrillicExamples: [
+                    { word: "Њива", meaning: "Field" },
+                    { word: "њушка", meaning: "Snout, muzzle" }
+                ]
+            },
+            {
+                latin: "O o",
+                cyrillic: "О о",
+                latinExamples: [
+                    { word: "Oko", meaning: "Eye" },
+                    { word: "oblak", meaning: "Cloud" }
+                ],
+                cyrillicExamples: [
+                    { word: "Око", meaning: "Eye" },
+                    { word: "облак", meaning: "Cloud" }
+                ]
+            },
+            {
+                latin: "P p",
+                cyrillic: "П п",
+                latinExamples: [
+                    { word: "Pas", meaning: "Dog" },
+                    { word: "ptica", meaning: "Bird" }
+                ],
+                cyrillicExamples: [
+                    { word: "Пас", meaning: "Dog" },
+                    { word: "птица", meaning: "Bird" }
+                ]
+            },
+            {
+                latin: "R r",
+                cyrillic: "Р р",
+                latinExamples: [
+                    { word: "Reka", meaning: "River" },
+                    { word: "ruka", meaning: "Hand, arm" }
+                ],
+                cyrillicExamples: [
+                    { word: "Река", meaning: "River" },
+                    { word: "рука", meaning: "Hand, arm" }
+                ]
+            },
+            {
+                latin: "S s",
+                cyrillic: "С с",
+                latinExamples: [
+                    { word: "Sunce", meaning: "Sun" },
+                    { word: "selo", meaning: "Village" }
+                ],
+                cyrillicExamples: [
+                    { word: "Сунце", meaning: "Sun" },
+                    { word: "село", meaning: "Village" }
+                ]
+            },
+            {
+                latin: "Š š",
+                cyrillic: "Ш ш",
+                latinExamples: [
+                    { word: "Šuma", meaning: "Forest" },
+                    { word: "škola", meaning: "School" }
+                ],
+                cyrillicExamples: [
+                    { word: "Шума", meaning: "Forest" },
+                    { word: "школа", meaning: "School" }
+                ]
+            },
+            {
+                latin: "T t",
+                cyrillic: "Т т",
+                latinExamples: [
+                    { word: "Tata", meaning: "Dad" },
+                    { word: "trava", meaning: "Grass" }
+                ],
+                cyrillicExamples: [
+                    { word: "Тата", meaning: "Dad" },
+                    { word: "трава", meaning: "Grass" }
+                ]
+            },
+            {
+                latin: "U u",
+                cyrillic: "У у",
+                latinExamples: [
+                    { word: "Ulica", meaning: "Street" },
+                    { word: "uho", meaning: "Ear" }
+                ],
+                cyrillicExamples: [
+                    { word: "Улица", meaning: "Street" },
+                    { word: "ухо", meaning: "Ear" }
+                ]
+            },
+            {
+                latin: "V v",
+                cyrillic: "В в",
+                latinExamples: [
+                    { word: "Voda", meaning: "Water" },
+                    { word: "vetar", meaning: "Wind" }
+                ],
+                cyrillicExamples: [
+                    { word: "Вода", meaning: "Water" },
+                    { word: "ветар", meaning: "Wind" }
+                ]
+            },
+            {
+                latin: "Z z",
+                cyrillic: "З з",
+                latinExamples: [
+                    { word: "Zvezda", meaning: "Star" },
+                    { word: "zima", meaning: "Winter" }
+                ],
+                cyrillicExamples: [
+                    { word: "Звезда", meaning: "Star" },
+                    { word: "зима", meaning: "Winter" }
+                ]
+            },
+            {
+                latin: "Ž ž",
+                cyrillic: "Ж ж",
+                latinExamples: [
+                    { word: "Život", meaning: "Life" },
+                    { word: "žena", meaning: "Woman, wife" }
+                ],
+                cyrillicExamples: [
+                    { word: "Живот", meaning: "Life" },
+                    { word: "жена", meaning: "Woman, wife" }
+                ]
+            }
+        ];
+
+        const alphabetContainer = document.getElementById('alphabetContainer');
+        const searchInput = document.getElementById('searchInput');
+        const clearFilterBtn = document.getElementById('clearFilterBtn');
+
+        /**
+         * Renderiza las filas del abecedario con Serbio Latino a la izquierda,
+         * las letras en el centro, y Serbio Cirílico a la derecha.
+         */
+        function renderAlphabet(items) {
+            alphabetContainer.innerHTML = '';
+
+            if (items.length === 0) {
+                const emptyState = document.createElement('p');
+                emptyState.innerHTML = 'No se encontraron coincidencias para tu búsqueda. Intenta con otra letra o palabra.';
+                alphabetContainer.appendChild(emptyState);
+                return;
+            }
+
+            items.forEach(item => {
+                const row = document.createElement('article');
+                row.className = 'letter-row';
+
+                // Columna Izquierda: Latin Serbian + English
+                const latinSide = document.createElement('div');
+                latinSide.className = 'side-latin';
+                const latinTag = document.createElement('span');
+                latinTag.className = 'script-tag';
+                latinTag.textContent = 'Latin Serbian / English';
+                latinSide.appendChild(latinTag);
+
+                item.latinExamples.forEach(ex => {
+                    const p = document.createElement('div');
+                    p.className = 'example-item';
+                    p.innerHTML = `<strong class="serbian-word">${ex.word}</strong> &mdash; <span class="english-meaning">${ex.meaning}</span>`;
+                    latinSide.appendChild(p);
+                });
+
+                // Centro: Letra Latina y Letra Cirílica
+                const centerBox = document.createElement('div');
+                centerBox.className = 'center-letters';
+                centerBox.innerHTML = `
+                    <div class="letter-latin">${item.latin}</div>
+                    <div class="letter-divider"></div>
+                    <div class="letter-cyrillic">${item.cyrillic}</div>
+                `;
+
+                // Columna Derecha: Cirilica + English
+                const cyrillicSide = document.createElement('div');
+                cyrillicSide.className = 'side-cyrillic';
+                const cyrillicTag = document.createElement('span');
+                cyrillicTag.className = 'script-tag';
+                cyrillicTag.textContent = 'Cirilica / English';
+                cyrillicSide.appendChild(cyrillicTag);
+
+                item.cyrillicExamples.forEach(ex => {
+                    const p = document.createElement('div');
+                    p.className = 'example-item';
+                    p.innerHTML = `<strong class="serbian-word">${ex.word}</strong> &mdash; <span class="english-meaning">${ex.meaning}</span>`;
+                    cyrillicSide.appendChild(p);
+                });
+
+                row.appendChild(latinSide);
+                row.appendChild(centerBox);
+                row.appendChild(cyrillicSide);
+                alphabetContainer.appendChild(row);
+            });
+        }
+
+        // Filtrado en tiempo real
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.trim().toLowerCase();
+            if (!term) {
+                renderAlphabet(serbianAlphabetData);
+                return;
+            }
+
+            const filtered = serbianAlphabetData.filter(item => {
+                const matchLetters = item.latin.toLowerCase().includes(term) || item.cyrillic.toLowerCase().includes(term);
+                const matchLatinWords = item.latinExamples.some(ex => 
+                    ex.word.toLowerCase().includes(term) || ex.meaning.toLowerCase().includes(term)
+                );
+                const matchCyrillicWords = item.cyrillicExamples.some(ex => 
+                    ex.word.toLowerCase().includes(term) || ex.meaning.toLowerCase().includes(term)
+                );
+                return matchLetters || matchLatinWords || matchCyrillicWords;
+            });
+
+            renderAlphabet(filtered);
+        });
+
+        clearFilterBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            renderAlphabet(serbianAlphabetData);
+            searchInput.focus();
+        });
+
+        /**
+         * Módulo de Práctica Interactiva con salto automático de cursor (focus)
+         * mediante keydown (tecla Enter) entre los campos de la misma actividad.
+         */
+        const practiceContainer = document.getElementById('practiceContainer');
+        const newPracticeBtn = document.getElementById('newPracticeBtn');
+        const scoreBox = document.getElementById('scoreBox');
+        let currentPracticeItems = [];
+
+        function generatePracticeSet() {
+            const shuffled = [...serbianAlphabetData].sort(() => 0.5 - Math.random());
+            currentPracticeItems = shuffled.slice(0, 6);
+            practiceContainer.innerHTML = '';
+
+            currentPracticeItems.forEach((item, index) => {
+                const latinUpper = item.latin.split(' ')[0];
+                const cyrillicUpper = item.cyrillic.split(' ')[0];
+
+                const card = document.createElement('div');
+                card.className = 'practice-card';
+
+                const prompt = document.createElement('div');
+                prompt.className = 'practice-prompt';
+                prompt.innerHTML = `
+                    <span>Latín: <strong>${item.latin}</strong></span>
+                    <span class="practice-badge">${latinUpper}</span>
+                `;
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.className = 'practice-input';
+                input.placeholder = 'Escribe en cirílico y pulsa Enter';
+                input.dataset.expected = cyrillicUpper.toLowerCase();
+                input.dataset.displayExpected = item.cyrillic;
+                input.dataset.index = index;
+                input.setAttribute('aria-label', `Equivalente cirílico para ${latinUpper}`);
+
+                const feedback = document.createElement('div');
+                feedback.className = 'feedback-msg';
+                feedback.id = `feedback-${index}`;
+
+                // Evaluar respuesta al escribir
+                input.addEventListener('input', () => {
+                    validateInput(input, feedback);
+                    updateScore();
+                });
+
+                // REGLA CRÍTICA: Salto de cursor automático (focus) mediante keydown (tecla Enter)
+                input.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        validateInput(input, feedback);
+                        updateScore();
+
+                        const allInputs = Array.from(document.querySelectorAll('.practice-input'));
+                        const currentIndex = allInputs.indexOf(event.target);
+                        if (currentIndex !== -1 && currentIndex < allInputs.length - 1) {
+                            allInputs[currentIndex + 1].focus();
+                        } else if (currentIndex === allInputs.length - 1) {
+                            // Vuelve al primer campo si está en el último
+                            allInputs[0].focus();
+                        }
+                    }
+                });
+
+                card.appendChild(prompt);
+                card.appendChild(input);
+                card.appendChild(feedback);
+                practiceContainer.appendChild(card);
+            });
+
+            updateScore();
+        }
+
+        function validateInput(input, feedbackElement) {
+            const userVal = input.value.trim().toLowerCase();
+            const expectedVal = input.dataset.expected;
+            const displayExpected = input.dataset.displayExpected;
+
+            if (!userVal) {
+                feedbackElement.textContent = '';
+                feedbackElement.className = 'feedback-msg';
+                input.dataset.correct = 'false';
+                return;
+            }
+
+            if (userVal === expectedVal) {
+                feedbackElement.innerHTML = `Correcto: <strong>${displayExpected}</strong>`;
+                feedbackElement.className = 'feedback-msg feedback-correct';
+                input.dataset.correct = 'true';
+            } else {
+                feedbackElement.innerHTML = `Sigue intentando (Ejemplo: ${displayExpected})`;
+                feedbackElement.className = 'feedback-msg';
+                input.dataset.correct = 'false';
+            }
+        }
+
+        function updateScore() {
+            const allInputs = Array.from(document.querySelectorAll('.practice-input'));
+            const correctCount = allInputs.filter(inp => inp.dataset.correct === 'true').length;
+            scoreBox.textContent = `Aciertos: ${correctCount} / ${allInputs.length}`;
+        }
+
+        newPracticeBtn.addEventListener('click', () => {
+            generatePracticeSet();
+            const firstInput = document.querySelector('.practice-input');
+            if (firstInput) firstInput.focus();
+        });
+
+        // Inicialización
+        renderAlphabet(serbianAlphabetData);
+        generatePracticeSet();
+    </script>
+</body>
+</html>
